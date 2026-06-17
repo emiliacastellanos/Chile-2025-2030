@@ -9,16 +9,13 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --dark:    #0f1923;
-  --navy:    #162232;
-  --blue:    #216686;
-  --sky:     #4a9bbe;
-  --gold:    #c9973a;
-  --cream:   #f5f2ed;
-  --text:    #1e2a35;
-  --light:   #6b7a8a;
-  --border:  #ddd8d0;
-  --white:   #ffffff;
+  --dark:   #0f1923;
+  --blue:   #216686;
+  --sky:    #4a9bbe;
+  --gold:   #c9973a;
+  --white:  #ffffff;
+  --border: #ddd8d0;
+  --light:  #6b7a8a;
 }
 
 body {
@@ -38,251 +35,176 @@ body {
 }
 .hero::before {
   content: '';
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0;
   background:
     radial-gradient(ellipse 80% 60% at 50% 0%, rgba(33,102,134,0.18) 0%, transparent 70%),
     radial-gradient(ellipse 40% 40% at 20% 80%, rgba(201,151,58,0.08) 0%, transparent 60%);
   pointer-events: none;
 }
-
-/* subtle grid lines */
 .hero::after {
   content: '';
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0;
   background-image:
     linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
   background-size: 60px 60px;
   pointer-events: none;
 }
-
 .hero-inner { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; }
 
 .eyebrow {
   display: inline-block;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--sky);
-  margin-bottom: 1.25rem;
+  font-size: 10px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--sky); margin-bottom: 1.25rem;
   padding: 4px 12px;
-  border: 1px solid rgba(74,155,190,0.3);
-  border-radius: 20px;
+  border: 1px solid rgba(74,155,190,0.3); border-radius: 20px;
 }
-
 .hero h1 {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(2rem, 5vw, 3.2rem);
-  font-weight: 700;
-  line-height: 1.15;
-  margin-bottom: 1rem;
-  color: var(--white);
+  font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700;
+  line-height: 1.15; margin-bottom: 1rem;
 }
-
-.hero h1 em {
-  font-style: normal;
-  color: var(--sky);
-}
-
+.hero h1 em { font-style: normal; color: var(--sky); }
 .hero-sub {
-  font-size: 15px;
-  color: rgba(255,255,255,0.5);
-  max-width: 480px;
-  margin: 0 auto 2.5rem;
-  line-height: 1.7;
+  font-size: 15px; color: rgba(255,255,255,0.5);
+  max-width: 480px; margin: 0 auto 2.5rem; line-height: 1.7;
 }
-
-.hero-meta {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-  margin-bottom: 0.5rem;
-}
-
-.meta-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-}
+.hero-meta { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
+.meta-item { display: flex; flex-direction: column; align-items: center; gap: 2px; }
 .meta-item .ml { font-size: 9px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.3); }
 .meta-item .mv { font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.7); }
 
 /* ── DIVIDER ── */
-.divider {
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
-  margin: 0;
-}
+.divider { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent); }
 
-/* ── CARDS SECTION ── */
-.cards-section {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 3rem 2rem 4rem;
-}
-
+/* ── SECTION ── */
+.cards-section { max-width: 1060px; margin: 0 auto; padding: 3rem 2rem 4rem; }
 .section-label {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.25);
-  margin-bottom: 1.5rem;
-  text-align: center;
+  font-size: 10px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase;
+  color: rgba(255,255,255,0.25); margin-bottom: 1.5rem; text-align: center;
 }
 
+/* ── GRID ── */
 .cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
 }
 
-/* ── COUNTRY CARD ── */
+/* ── CARD BASE ── */
 .country-card {
-  position: relative;
-  border-radius: 16px;
-  overflow: hidden;
-  text-decoration: none;
-  display: block;
-  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  position: relative; border-radius: 14px; overflow: hidden;
+  text-decoration: none; display: block;
   border: 1px solid rgba(255,255,255,0.07);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  min-height: 210px;
 }
-.country-card:hover {
+.country-card:not(.card-locked):hover {
   transform: translateY(-4px);
   box-shadow: 0 20px 50px rgba(0,0,0,0.4);
 }
-
-.card-bg {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  transition: transform 0.4s ease;
-}
-.country-card:hover .card-bg { transform: scale(1.04); }
-
-.card-overlay {
-  position: absolute;
-  inset: 0;
-}
-
+.card-bg { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform 0.4s ease; }
+.country-card:not(.card-locked):hover .card-bg { transform: scale(1.04); }
+.card-overlay { position: absolute; inset: 0; }
 .card-content {
-  position: relative;
-  z-index: 2;
-  padding: 1.75rem 1.75rem 1.5rem;
-  min-height: 220px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  position: relative; z-index: 2;
+  padding: 1.4rem 1.5rem 1.3rem;
+  min-height: 210px;
+  display: flex; flex-direction: column; justify-content: space-between;
 }
 
-.card-top { display: flex; justify-content: space-between; align-items: flex-start; }
-
-.card-flag {
-  font-size: 2rem;
-  line-height: 1;
-}
-
+/* top row */
+.card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: .5rem; }
+.card-flag { font-size: 1.9rem; line-height: 1; }
 .card-status {
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  padding: 4px 10px;
-  border-radius: 20px;
+  font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 3px 9px; border-radius: 20px;
 }
 .status-live { background: rgba(29,125,84,0.3); color: #6ee8a8; border: 1px solid rgba(29,125,84,0.4); }
-.status-soon { background: rgba(201,151,58,0.2); color: #f0c97a; border: 1px solid rgba(201,151,58,0.3); }
+.status-soon { background: rgba(201,151,58,0.18); color: #f0c97a; border: 1px solid rgba(201,151,58,0.3); }
 
-.card-bottom {}
+/* bottom content */
+.card-country { font-family: 'Playfair Display', serif; font-size: 1.55rem; font-weight: 700; color: white; line-height: 1.1; margin-bottom: .25rem; }
+.card-desc { font-size: 11.5px; color: rgba(255,255,255,0.55); margin-bottom: .85rem; line-height: 1.45; }
 
-.card-country {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: white;
-  margin-bottom: 0.3rem;
-  line-height: 1.1;
-}
-
-.card-desc {
-  font-size: 12.5px;
-  color: rgba(255,255,255,0.6);
-  margin-bottom: 1.1rem;
-  line-height: 1.5;
-}
-
-.card-stats {
-  display: flex;
-  gap: 1.25rem;
-  margin-bottom: 1.25rem;
-}
-
+.card-stats { display: flex; gap: 1.1rem; margin-bottom: .9rem; }
 .stat { display: flex; flex-direction: column; gap: 1px; }
-.stat-val { font-size: 15px; font-weight: 700; color: white; }
-.stat-lbl { font-size: 9.5px; font-weight: 500; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.5px; }
+.stat-val { font-size: 14px; font-weight: 700; color: white; }
+.stat-lbl { font-size: 9px; font-weight: 500; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.4px; }
 
 .card-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 12px;
-  font-weight: 600;
-  color: white;
-  padding: 7px 16px;
-  border-radius: 8px;
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 11.5px; font-weight: 600; color: white;
+  padding: 6px 13px; border-radius: 7px;
   transition: background 0.15s;
 }
-.card-cta svg { width: 14px; height: 14px; transition: transform 0.15s; }
-.country-card:hover .card-cta svg { transform: translateX(3px); }
+.card-cta svg { width: 13px; height: 13px; transition: transform 0.15s; }
+.country-card:not(.card-locked):hover .card-cta svg { transform: translateX(3px); }
 
-/* Chile card */
-.chile-bg {
-  background: linear-gradient(135deg, #0d2535 0%, #1a3d55 50%, #0d3328 100%);
-}
-.chile-overlay {
-  background: linear-gradient(160deg, rgba(13,37,53,0.2) 0%, rgba(13,37,53,0.75) 100%);
-}
-.chile-cta { background: rgba(33,102,134,0.5); }
+/* locked */
+.card-locked { cursor: default; opacity: 0.72; }
+
+/* ── PER-COUNTRY COLOURS ── */
+/* Chile */
+.chile-bg    { background: linear-gradient(135deg,#0d2535,#1a3d55,#0d3328); }
+.chile-ov    { background: linear-gradient(160deg,rgba(13,37,53,0.15) 0%,rgba(13,37,53,0.72) 100%); }
+.chile-cta   { background: rgba(33,102,134,0.5); }
 .chile-cta:hover { background: rgba(33,102,134,0.8); }
 
-/* Ecuador card */
-.ecuador-bg {
-  background: linear-gradient(135deg, #1a2810 0%, #2d4a1a 50%, #3d2810 100%);
-}
-.ecuador-overlay {
-  background: linear-gradient(160deg, rgba(26,40,16,0.2) 0%, rgba(26,40,16,0.8) 100%);
-}
+/* Ecuador */
+.ecuador-bg  { background: linear-gradient(135deg,#1a2810,#2d4a1a,#3d2810); }
+.ecuador-ov  { background: linear-gradient(160deg,rgba(26,40,16,0.15) 0%,rgba(26,40,16,0.78) 100%); }
 .ecuador-cta { background: rgba(201,151,58,0.4); }
 .ecuador-cta:hover { background: rgba(201,151,58,0.7); }
 
-/* ── COMING SOON CARD ── */
-.card-locked .card-content { opacity: 0.85; }
-.card-locked { cursor: default; }
-.card-locked:hover { transform: none; box-shadow: none; }
+/* Brasil */
+.brasil-bg   { background: linear-gradient(135deg,#0d2b0a,#1e4a16,#2b3a08); }
+.brasil-ov   { background: linear-gradient(160deg,rgba(13,43,10,0.1) 0%,rgba(13,43,10,0.75) 100%); }
+.brasil-cta  { background: rgba(30,100,22,0.5); }
+.brasil-cta:hover { background: rgba(30,100,22,0.8); }
+
+/* Argentina */
+.argentina-bg { background: linear-gradient(135deg,#0d1e3a,#162d52,#0d2438); }
+.argentina-ov { background: linear-gradient(160deg,rgba(13,30,58,0.1) 0%,rgba(13,30,58,0.75) 100%); }
+.argentina-cta { background: rgba(100,150,210,0.4); }
+.argentina-cta:hover { background: rgba(100,150,210,0.7); }
+
+/* Colombia */
+.colombia-bg  { background: linear-gradient(135deg,#2a1a08,#3d2c08,#1a1a08); }
+.colombia-ov  { background: linear-gradient(160deg,rgba(42,26,8,0.1) 0%,rgba(42,26,8,0.78) 100%); }
+.colombia-cta { background: rgba(180,120,20,0.45); }
+.colombia-cta:hover { background: rgba(180,120,20,0.75); }
+
+/* México */
+.mexico-bg   { background: linear-gradient(135deg,#2a0a0a,#1a2a0a,#0a1a2a); }
+.mexico-ov   { background: linear-gradient(160deg,rgba(42,10,10,0.1) 0%,rgba(42,10,10,0.78) 100%); }
+.mexico-cta  { background: rgba(180,50,50,0.45); }
+.mexico-cta:hover { background: rgba(180,50,50,0.75); }
+
+/* Bolivia */
+.bolivia-bg  { background: linear-gradient(135deg,#1a0d2a,#2a1a0a,#0a2a1a); }
+.bolivia-ov  { background: linear-gradient(160deg,rgba(26,13,42,0.1) 0%,rgba(26,13,42,0.78) 100%); }
+.bolivia-cta { background: rgba(120,60,180,0.4); }
+.bolivia-cta:hover { background: rgba(120,60,180,0.7); }
+
+/* Perú */
+.peru-bg     { background: linear-gradient(135deg,#2a0d0d,#3a1a1a,#1a0d0d); }
+.peru-ov     { background: linear-gradient(160deg,rgba(42,13,13,0.1) 0%,rgba(42,13,13,0.78) 100%); }
+.peru-cta    { background: rgba(180,30,30,0.45); }
+.peru-cta:hover { background: rgba(180,30,30,0.75); }
 
 /* ── FOOTER ── */
 .footer {
-  text-align: center;
-  padding: 2rem;
-  font-size: 11px;
-  color: rgba(255,255,255,0.2);
-  letter-spacing: 0.5px;
+  text-align: center; padding: 2rem;
+  font-size: 11px; color: rgba(255,255,255,0.2); letter-spacing: 0.5px;
   border-top: 1px solid rgba(255,255,255,0.05);
 }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 600px) {
   .hero { padding: 3rem 1.5rem 2rem; }
-  .cards-section { padding: 2rem 1.25rem 3rem; }
+  .cards-section { padding: 2rem 1rem 3rem; }
   .cards-grid { grid-template-columns: 1fr; }
-  .hero-meta { gap: 1.25rem; }
 }
 </style>
 </head>
@@ -297,7 +219,7 @@ body {
     <div class="hero-meta">
       <div class="meta-item">
         <span class="ml">Fuente primaria</span>
-        <span class="mv">EIU · BCCh · Hacienda</span>
+        <span class="mv">EIU · Bancos Centrales</span>
       </div>
       <div class="meta-item">
         <span class="ml">Actualizado</span>
@@ -305,7 +227,7 @@ body {
       </div>
       <div class="meta-item">
         <span class="ml">Países</span>
-        <span class="mv">2 disponibles</span>
+        <span class="mv">2 disponibles · 6 próximamente</span>
       </div>
     </div>
   </div>
@@ -316,13 +238,12 @@ body {
 <!-- CARDS -->
 <div class="cards-section">
   <div class="section-label">Selecciona un país</div>
-
   <div class="cards-grid">
 
-    <!-- CHILE -->
+    <!-- CHILE ✅ -->
     <a href="chile.html" class="country-card">
       <div class="card-bg chile-bg"></div>
-      <div class="card-overlay chile-overlay"></div>
+      <div class="card-overlay chile-ov"></div>
       <div class="card-content">
         <div class="card-top">
           <span class="card-flag">🇨🇱</span>
@@ -330,33 +251,21 @@ body {
         </div>
         <div class="card-bottom">
           <div class="card-country">Chile</div>
-          <div class="card-desc">Gobierno Kast · Pipeline minero US$87bn · Cobre en récord histórico · Ajuste fiscal 2026</div>
+          <div class="card-desc">Gobierno Kast · Pipeline minero US$87bn · Cobre en récord · Ajuste fiscal 2026</div>
           <div class="card-stats">
-            <div class="stat">
-              <span class="stat-val">1.4%</span>
-              <span class="stat-lbl">PIB 2026E</span>
-            </div>
-            <div class="stat">
-              <span class="stat-val">3.7%</span>
-              <span class="stat-lbl">Inflación</span>
-            </div>
-            <div class="stat">
-              <span class="stat-val">$22bn</span>
-              <span class="stat-lbl">FDI 2026E</span>
-            </div>
+            <div class="stat"><span class="stat-val">1.4%</span><span class="stat-lbl">PIB 2026E</span></div>
+            <div class="stat"><span class="stat-val">3.7%</span><span class="stat-lbl">Inflación</span></div>
+            <div class="stat"><span class="stat-val">$22bn</span><span class="stat-lbl">FDI 2026E</span></div>
           </div>
-          <span class="card-cta chile-cta">
-            Ver análisis completo
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-          </span>
+          <span class="card-cta chile-cta">Ver análisis completo <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
         </div>
       </div>
     </a>
 
-    <!-- ECUADOR -->
+    <!-- ECUADOR ✅ -->
     <a href="ecuador.html" class="country-card">
       <div class="card-bg ecuador-bg"></div>
-      <div class="card-overlay ecuador-overlay"></div>
+      <div class="card-overlay ecuador-ov"></div>
       <div class="card-content">
         <div class="card-top">
           <span class="card-flag">🇪🇨</span>
@@ -364,34 +273,154 @@ body {
         </div>
         <div class="card-bottom">
           <div class="card-country">Ecuador</div>
-          <div class="card-desc">Gobierno Noboa · Vuelta a mercados · Petróleo en declive · Minería emergente · Dolarización</div>
+          <div class="card-desc">Gobierno Noboa · Vuelta a mercados · Petróleo en declive · Minería emergente</div>
           <div class="card-stats">
-            <div class="stat">
-              <span class="stat-val">2.3%</span>
-              <span class="stat-lbl">PIB 2026E</span>
-            </div>
-            <div class="stat">
-              <span class="stat-val">404bps</span>
-              <span class="stat-lbl">Riesgo país</span>
-            </div>
-            <div class="stat">
-              <span class="stat-val">$5bn</span>
-              <span class="stat-lbl">Deuda emitida</span>
-            </div>
+            <div class="stat"><span class="stat-val">2.3%</span><span class="stat-lbl">PIB 2026E</span></div>
+            <div class="stat"><span class="stat-val">404bps</span><span class="stat-lbl">Riesgo país</span></div>
+            <div class="stat"><span class="stat-val">$5bn</span><span class="stat-lbl">Deuda emitida</span></div>
           </div>
-          <span class="card-cta ecuador-cta">
-            Ver análisis completo
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-          </span>
+          <span class="card-cta ecuador-cta">Ver análisis completo <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
         </div>
       </div>
     </a>
+
+    <!-- BRASIL 🔜 -->
+    <div class="country-card card-locked">
+      <div class="card-bg brasil-bg"></div>
+      <div class="card-overlay brasil-ov"></div>
+      <div class="card-content">
+        <div class="card-top">
+          <span class="card-flag">🇧🇷</span>
+          <span class="card-status status-soon">Próximamente</span>
+        </div>
+        <div class="card-bottom">
+          <div class="card-country">Brasil</div>
+          <div class="card-desc">Gobierno Lula · Política fiscal expansiva · Agronegocio · Mercado de capitales más profundo de LATAM</div>
+          <div class="card-stats">
+            <div class="stat"><span class="stat-val">—</span><span class="stat-lbl">PIB 2026E</span></div>
+            <div class="stat"><span class="stat-val">—</span><span class="stat-lbl">Inflación</span></div>
+            <div class="stat"><span class="stat-val">—</span><span class="stat-lbl">FDI 2026E</span></div>
+          </div>
+          <span class="card-cta brasil-cta" style="opacity:0.45;cursor:default">En preparación <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3v10M3 8h10"/></svg></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- COLOMBIA 🔜 -->
+    <div class="country-card card-locked">
+      <div class="card-bg colombia-bg"></div>
+      <div class="card-overlay colombia-ov"></div>
+      <div class="card-content">
+        <div class="card-top">
+          <span class="card-flag">🇨🇴</span>
+          <span class="card-status status-soon">Próximamente</span>
+        </div>
+        <div class="card-bottom">
+          <div class="card-country">Colombia</div>
+          <div class="card-desc">Gobierno Petro · Tensión fiscal · Sector cafetero y minero · Tratado de paz y seguridad</div>
+          <div class="card-stats">
+            <div class="stat"><span class="stat-val">—</span><span class="stat-lbl">PIB 2026E</span></div>
+            <div class="stat"><span class="stat-val">—</span><span class="stat-lbl">Inflación</span></div>
+            <div class="stat"><span class="stat-val">—</span><span class="stat-lbl">FDI 2026E</span></div>
+          </div>
+          <span class="card-cta colombia-cta" style="opacity:0.45;cursor:default">En preparación <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3v10M3 8h10"/></svg></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- MÉXICO 🔜 -->
+    <div class="country-card card-locked">
+      <div class="card-bg mexico-bg"></div>
+      <div class="card-overlay mexico-ov"></div>
+      <div class="card-content">
+        <div class="card-top">
+          <span class="card-flag">🇲🇽</span>
+          <span class="card-status status-soon">Próximamente</span>
+        </div>
+        <div class="card-bottom">
+          <div class="card-country">México</div>
+          <div class="card-desc">Gobierno Sheinbaum · Nearshoring · Reforma judicial · TMEC y relación con EE.UU.</div>
+          <div class="card-stats">
+            <div class="stat"><span class="stat-val">—</span><span class="stat-lbl">PIB 2026E</span></div>
+            <div class="stat"><span class="stat-val">—</span><span class="stat-lbl">Inflación</span></div>
+            <div class="stat"><span class="stat-val">—</span><span class="stat-lbl">FDI 2026E</span></div>
+          </div>
+          <span class="card-cta mexico-cta" style="opacity:0.45;cursor:default">En preparación <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3v10M3 8h10"/></svg></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ARGENTINA 🔜 -->
+    <div class="country-card card-locked">
+      <div class="card-bg argentina-bg"></div>
+      <div class="card-overlay argentina-ov"></div>
+      <div class="card-content">
+        <div class="card-top">
+          <span class="card-flag">🇦🇷</span>
+          <span class="card-status status-soon">Próximamente</span>
+        </div>
+        <div class="card-bottom">
+          <div class="card-country">Argentina</div>
+          <div class="card-desc">Gobierno Milei · Ajuste fiscal histórico · Reservas del BCRA · Vaca Muerta y lithium triangle</div>
+          <div class="card-stats">
+            <div class="stat"><span class="stat-val">—</span><span class="stat-lbl">PIB 2026E</span></div>
+            <div class="stat"><span class="stat-val">—</span><span class="stat-lbl">Inflación</span></div>
+            <div class="stat"><span class="stat-val">—</span><span class="stat-lbl">FDI 2026E</span></div>
+          </div>
+          <span class="card-cta argentina-cta" style="opacity:0.45;cursor:default">En preparación <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3v10M3 8h10"/></svg></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PERÚ 🔜 -->
+    <div class="country-card card-locked">
+      <div class="card-bg peru-bg"></div>
+      <div class="card-overlay peru-ov"></div>
+      <div class="card-content">
+        <div class="card-top">
+          <span class="card-flag">🇵🇪</span>
+          <span class="card-status status-soon">Próximamente</span>
+        </div>
+        <div class="card-bottom">
+          <div class="card-country">Perú</div>
+          <div class="card-desc">Gobierno Boluarte · Minería de cobre y oro · Inestabilidad política · Elecciones 2026</div>
+          <div class="card-stats">
+            <div class="stat"><span class="stat-val">—</span><span class="stat-lbl">PIB 2026E</span></div>
+            <div class="stat"><span class="stat-val">—</span><span class="stat-lbl">Inflación</span></div>
+            <div class="stat"><span class="stat-val">—</span><span class="stat-lbl">FDI 2026E</span></div>
+          </div>
+          <span class="card-cta peru-cta" style="opacity:0.45;cursor:default">En preparación <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3v10M3 8h10"/></svg></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOLIVIA 🔜 -->
+    <div class="country-card card-locked">
+      <div class="card-bg bolivia-bg"></div>
+      <div class="card-overlay bolivia-ov"></div>
+      <div class="card-content">
+        <div class="card-top">
+          <span class="card-flag">🇧🇴</span>
+          <span class="card-status status-soon">Próximamente</span>
+        </div>
+        <div class="card-bottom">
+          <div class="card-country">Bolivia</div>
+          <div class="card-desc">Crisis energética · Reservas de gas en declive · Litio estratégico · FMI y déficit fiscal</div>
+          <div class="card-stats">
+            <div class="stat"><span class="stat-val">—</span><span class="stat-lbl">PIB 2026E</span></div>
+            <div class="stat"><span class="stat-val">—</span><span class="stat-lbl">Inflación</span></div>
+            <div class="stat"><span class="stat-val">—</span><span class="stat-lbl">FDI 2026E</span></div>
+          </div>
+          <span class="card-cta bolivia-cta" style="opacity:0.45;cursor:default">En preparación <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3v10M3 8h10"/></svg></span>
+        </div>
+      </div>
+    </div>
 
   </div>
 </div>
 
 <div class="footer">
-  Análisis elaborado en junio 2026 · Fuentes: EIU, BCCh, CMF, Hacienda, Bloomberg, Cochilco, CBC
+  Análisis elaborado en junio 2026 · Fuentes: EIU, Bancos Centrales, FMI, Bloomberg, medios especializados
 </div>
 
 </body>
