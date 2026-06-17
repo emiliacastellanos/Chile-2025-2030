@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ecuador 2026–2027 | Perspectiva Macroeconómica y Financiera</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--blue:#216686;--red:#CD4F4F;--gray:#A6A6A6;--orange:#DC7528;--green:#1D7D54;--dark:#1a1a2e;--text:#1e1e2e;--light:#5a5a72;--bg:#f8f7f4;--white:#ffffff;--border:#e2e0da}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:15px}
+.header{background:var(--dark);color:white;padding:2.5rem 3rem;position:relative;overflow:hidden}
+.header::before{content:'';position:absolute;top:-60px;right:-80px;width:300px;height:300px;border-radius:50%;border:2px solid rgba(220,117,40,0.3)}
+.header-eyebrow{font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:.75rem}
+.header h1{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:700;line-height:1.15;margin-bottom:.5rem}
+.header h1 span{color:#f0c060}
+.header-sub{font-size:14px;color:rgba(255,255,255,0.55);max-width:560px;margin-top:.5rem}
+.header-meta{display:flex;gap:2rem;margin-top:2rem;flex-wrap:wrap}
+.header-meta-item{display:flex;flex-direction:column;gap:3px}
+.header-meta-item .label{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.35)}
+.header-meta-item .value{font-size:13px;font-weight:500;color:rgba(255,255,255,0.85)}
+.container{max-width:1100px;margin:0 auto;padding:2.5rem 2rem}
+.sec-hdr{display:flex;align-items:center;gap:12px;margin-bottom:1.5rem;margin-top:2.5rem}
+.sec-num{width:32px;height:32px;border-radius:50%;background:var(--blue);color:white;font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-title{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:600;color:var(--text)}
+.sec-line{flex:1;height:1px;background:var(--border)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1rem;margin-bottom:1.5rem}
+.card{background:var(--white);border-radius:12px;border:1px solid var(--border);padding:1.25rem 1.5rem}
+.card.bl{border-left:4px solid var(--blue)}.card.gr{border-left:4px solid var(--green)}.card.or{border-left:4px solid var(--orange)}.card.re{border-left:4px solid var(--red)}
+.card.warn{background:#fff9f0;border-color:#f4c97a;border-left:4px solid var(--orange)}
+.card.succ{background:#f0f9f5;border-color:#7dd3b0;border-left:4px solid var(--green)}
+.card.risk{background:#fff5f5;border-color:#f5b8b8;border-left:4px solid var(--red)}
+.tag{display:inline-block;font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:4px;margin-bottom:.75rem;background:rgba(33,102,134,0.1);color:var(--blue)}
+.tag.r{background:rgba(205,79,79,0.1);color:var(--red)}.tag.g{background:rgba(29,125,84,0.1);color:var(--green)}.tag.o{background:rgba(220,117,40,0.1);color:var(--orange)}
+.card h3{font-size:15px;font-weight:600;margin-bottom:.5rem;color:var(--text);line-height:1.3}
+.card p{font-size:13.5px;color:var(--light);line-height:1.6;margin-bottom:.75rem}
+.impl{border-radius:6px;padding:.65rem .85rem;font-size:12.5px;font-weight:500;line-height:1.5;background:rgba(33,102,134,0.06);color:var(--blue)}
+.impl::before{content:'→ Lectura: ';font-weight:700}
+.impl.r{background:rgba(205,79,79,0.06);color:var(--red)}.impl.g{background:rgba(29,125,84,0.06);color:var(--green)}.impl.o{background:rgba(220,117,40,0.06);color:var(--orange)}
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.75rem;margin-bottom:1.5rem}
+.kpi{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:1rem 1.1rem;text-align:center}
+.kpi .kl{font-size:10.5px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;color:var(--light);margin-bottom:.4rem}
+.kpi .kv{font-size:1.75rem;font-weight:700;font-family:'Playfair Display',serif;color:var(--blue);line-height:1}
+.kpi .ks{font-size:11px;color:var(--light);margin-top:.25rem}
+.kpi.r .kv{color:var(--red)}.kpi.g .kv{color:var(--green)}.kpi.o .kv{color:var(--orange)}
+.cw{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:1.25rem}
+.ct{font-size:13px;font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.8px;margin-bottom:.25rem}
+.cs{font-size:12px;color:var(--light);margin-bottom:1.25rem}
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem}
+.leg{display:flex;flex-wrap:wrap;gap:1rem;margin-bottom:1rem;font-size:12px;color:var(--light)}
+.leg-i{display:flex;align-items:center;gap:5px}
+.dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+.rtable{width:100%;border-collapse:collapse;font-size:13px;background:var(--white);border-radius:12px;overflow:hidden;border:1px solid var(--border);margin-bottom:1.5rem}
+.rtable thead th{background:var(--dark);color:rgba(255,255,255,0.8);font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:.75rem 1rem;text-align:left}
+.rtable tbody tr{border-bottom:1px solid var(--border)}
+.rtable tbody tr:last-child{border-bottom:none}
+.rtable tbody td{padding:.85rem 1rem;vertical-align:top;color:var(--light);font-size:13px}
+.rtable tbody td:first-child{font-weight:500;color:var(--text)}
+.pill{display:inline-block;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:600}
+.ph{background:rgba(205,79,79,0.12);color:var(--red)}.pm{background:rgba(220,117,40,0.12);color:var(--orange)}.pl{background:rgba(29,125,84,0.12);color:var(--green)}.pvh{background:rgba(205,79,79,0.2);color:#a03030;font-weight:700}
+.callout{background:linear-gradient(135deg,#2a1f0a 0%,var(--dark) 100%);border-radius:12px;padding:1.5rem 2rem;color:white;margin:1.5rem 0;border-left:5px solid var(--orange)}
+.callout h4{font-family:'Playfair Display',serif;font-size:1.05rem;margin-bottom:.5rem;color:#f0c060}
+.callout p{font-size:13.5px;color:rgba(255,255,255,0.7);line-height:1.65}
+.dark-box{background:var(--dark);border-radius:14px;padding:2rem 2.5rem;margin-bottom:1.5rem;position:relative;overflow:hidden}
+.dark-box p.ey{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:1rem}
+.dark-box p.lead{font-family:'Playfair Display',serif;font-size:1.2rem;color:#f0c060;line-height:1.5;margin-bottom:.75rem}
+.dark-box p.body{font-size:13.5px;color:rgba(255,255,255,0.6);line-height:1.7}
+.src{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:1.2rem 1.5rem;margin-top:2.5rem}
+.src h4{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--light);margin-bottom:.75rem}
+.src ul{list-style:none;display:flex;flex-wrap:wrap;gap:.5rem 1.5rem}
+.src li{font-size:12px;color:var(--light)}
+.src li::before{content:'— ';color:var(--orange)}
+.footer{background:var(--dark);color:rgba(255,255,255,0.4);text-align:center;font-size:11px;padding:1.5rem;margin-top:3rem;letter-spacing:.5px}
+.footer strong{color:rgba(255,255,255,0.7)}
+.timeline{display:flex;flex-direction:column;gap:0;background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:1.5rem}
+.tl-row{display:grid;grid-template-columns:180px 100px 1fr 200px;border-bottom:1px solid var(--border);font-size:13px}
+.tl-row:last-child{border-bottom:none}
+.tl-row.hdr{background:#f4f3ef;font-size:10.5px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;color:var(--light)}
+.tl-cell{padding:.8rem 1rem;border-right:1px solid var(--border);color:var(--light)}
+.tl-cell:last-child{border-right:none}
+.tl-cell strong{color:var(--text);font-weight:600;display:block;margin-bottom:2px}
+.prog-bar{height:6px;border-radius:3px;background:#eee;margin-top:6px}
+.prog-fill{height:100%;border-radius:3px}
+.update-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:2px 7px;border-radius:4px;background:rgba(220,117,40,0.15);color:var(--orange);margin-left:6px;vertical-align:middle}
+@media(max-width:680px){.cgrid{grid-template-columns:1fr}.header{padding:2rem 1.5rem}.header h1{font-size:1.8rem}.tl-row{grid-template-columns:1fr}.tl-cell{border-right:none;border-bottom:1px solid var(--border)}.tl-cell:last-child{border-bottom:none}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div style="position:relative;z-index:1">
+    <div class="header-eyebrow">Análisis de Contexto País · Junio 2026</div>
+    <h1>Ecuador <span>2026–2027</span><br>Perspectiva Macro y Financiera</h1>
+    <p class="header-sub">Análisis del entorno político, económico y financiero de Ecuador para el período 2026–2027. Cubre macro, dolarización, petróleo, sectores de exportación, reformas y perspectivas del sistema financiero.</p>
+    <div class="header-meta">
+      <div class="header-meta-item"><span class="label">Fecha</span><span class="value">Junio 2026</span></div>
+      <div class="header-meta-item"><span class="label">Fuente primaria</span><span class="value">EIU One-click Report · Junio 2026</span></div>
+      <div class="header-meta-item"><span class="label">Fuentes complementarias</span><span class="value">BCE · Ministerio Finanzas · FMI EFF · APOYO Consultoría · Bloomberg</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- KPI RESUMEN -->
+<div class="kpi-row" style="margin-top:2rem">
+  <div class="kpi g"><div class="kl">PIB real 2025</div><div class="kv">3.7%</div><div class="ks">Rebote desde recesión</div></div>
+  <div class="kpi o"><div class="kl">PIB real 2026E</div><div class="kv">2.3%</div><div class="ks">EIU jun'26 · desacelera</div></div>
+  <div class="kpi"><div class="kl">PIB real 2027E</div><div class="kv">2.4%</div><div class="ks">Soporte: inversión minera</div></div>
+  <div class="kpi o"><div class="kl">Inflación 2026E</div><div class="kv">2.3%</div><div class="ks">EIU jun'26 / APOYO: 3.7%</div></div>
+  <div class="kpi r"><div class="kl">Riesgo país</div><div class="kv">404</div><div class="ks">bps · mín. desde 2015</div></div>
+  <div class="kpi r"><div class="kl">Deuda pública 2026E</div><div class="kv">49%</div><div class="ks">del PIB · en descenso</div></div>
+  <div class="kpi"><div class="kl">Tasa préstamos 2026E</div><div class="kv">7.8%</div><div class="ks">Baja desde 10.9% (2024)</div></div>
+  <div class="kpi"><div class="kl">Déficit fiscal 2026E</div><div class="kv">-1.0%</div><div class="ks">del PIB · consolidación FMI</div></div>
+</div>
+
+<!-- SEC 1: BASE DE PARTIDA -->
+<div class="sec-hdr"><div class="sec-num">1</div><div class="sec-title">Base de Partida 2025: Rebote Sólido, Fundamentos Frágiles</div><div class="sec-line"></div></div>
+
+<div class="callout">
+  <h4>Ecuador cerró 2025 con el mayor rebote del ciclo, pero sobre bases estructuralmente débiles</h4>
+  <p>PIB +3.7% en 2025 tras la recesión de 2024 (-1.9%), liderado por exportaciones no petroleras (+6.4%), inversión (+5.6%) y consumo privado (+2.7%). El hito más importante: Ecuador regresó a los mercados internacionales en enero 2026 con una colocación soberana de US$4,000M — la primera desde 2019 — seguida de US$1,000M adicionales en mayo 2026. El riesgo país cayó a 404 puntos básicos, mínimo en once años. Sin embargo, el país aún enfrenta: deuda pública ~49% del PIB, producción petrolera en declive estructural, crisis de seguridad intensa y dependencia crítica de la hidroelectricidad.</p>
+</div>
+
+<div class="cgrid">
+  <div class="cw">
+    <div class="ct">PIB real Ecuador vs. mundo</div>
+    <div class="cs">% de variación anual (2024–2030E) · EIU Junio 2026</div>
+    <div class="leg">
+      <span class="leg-i"><span class="dot" style="background:#216686"></span>Ecuador</span>
+      <span class="leg-i"><span class="dot" style="background:#A6A6A6"></span>Mundo</span>
+      <span class="leg-i"><span class="dot" style="background:#DC7528"></span>Emergentes</span>
+    </div>
+    <div style="position:relative;height:220px"><canvas id="gdpChart"></canvas></div>
+  </div>
+  <div class="cw">
+    <div class="ct">Entorno de negocios EIU 2026–2030</div>
+    <div class="cs">Ranking global (1=mejor, 82=peor) · EIU May 2026 · Ecuador: puesto 68/82</div>
+    <div style="position:relative;height:220px"><canvas id="berChart"></canvas></div>
+  </div>
+</div>
+
+<div class="grid">
+  <div class="card succ">
+    <div class="tag g">Retorno a mercados</div>
+    <h3>US$5,000M en deuda soberana en menos de cinco meses: señal histórica</h3>
+    <p>En enero 2026 Ecuador colocó US$4,000M en eurobonos (primera emisión desde 2019), con US$18,000M en demanda. En mayo 2026 reabrió los bonos 2034 y 2039 por US$1,000M adicionales a una tasa de 8.5%, 50 puntos básicos por debajo de enero. Las calificadoras Moody's y Fitch subieron el rating soberano. La operación es posible gracias al programa del FMI (EFF por US$4,000M en 2024 ampliado a US$6,500M en julio 2025) y a la disciplina fiscal del gobierno Noboa.</p>
+    <div class="impl g">El acceso a mercados es la señal de credibilidad más potente de Ecuador desde 2019. La reducción de tasas de préstamos del sistema (de 10.9% en 2024 a 7.8% en 2026E) refleja esta mejora en la percepción de riesgo.</div>
+  </div>
+  <div class="card warn">
+    <div class="tag o">Ranking EIU</div>
+    <h3>Puesto 68/82: el entorno de negocios más débil de la región junto a Venezuela</h3>
+    <p>Ecuador ocupa el puesto 68 de 82 países en entorno global de negocios (EIU 2026-2030), ubicándose en el lugar 10 de LATAM —apenas por encima de Cuba y Venezuela—. Sus peores dimensiones son mercado de oportunidades (75), mercado laboral (73) y política fiscal/impuestos (75). Su mejor dimensión relativa es el entorno macroeconómico (47/82), beneficiado por la dolarización. La fuerte inseguridad y las rigideces laborales son los grandes depresores del score.</p>
+    <div class="impl o">Perfil de riesgo país elevado en comparación con pares regionales. La dolarización ancla la estabilidad de precios pero elimina los grados de libertad de la política monetaria — un rasgo estructural diferencial frente a Chile o Colombia.</div>
+  </div>
+</div>
+
+<!-- SEC 2: AJUSTE 2026 -->
+<div class="sec-hdr"><div class="sec-num">2</div><div class="sec-title">El Ajuste de 2026: Triple Shock sobre una Economía Frágil</div><div class="sec-line"></div></div>
+
+<div class="cgrid">
+  <div class="cw">
+    <div class="ct">Descomposición del crecimiento del PIB</div>
+    <div class="cs">Contribución en puntos porcentuales (2024–2027E) · EIU Junio 2026</div>
+    <div class="leg">
+      <span class="leg-i"><span class="dot" style="background:#216686"></span>Consumo privado</span>
+      <span class="leg-i"><span class="dot" style="background:#1D7D54"></span>Inversión fija</span>
+      <span class="leg-i"><span class="dot" style="background:#A6A6A6"></span>Gob. + inventarios</span>
+      <span class="leg-i"><span class="dot" style="background:#DC7528"></span>Balanza externa</span>
+    </div>
+    <div style="position:relative;height:230px"><canvas id="gdpCompChart"></canvas></div>
+  </div>
+  <div class="cw">
+    <div class="ct">Balance fiscal y deuda pública</div>
+    <div class="cs">% del PIB (2021–2030E) · EIU / Ministerio de Finanzas Ecuador</div>
+    <div class="leg">
+      <span class="leg-i"><span class="dot" style="background:#CD4F4F"></span>Balance fiscal</span>
+      <span class="leg-i"><span class="dot" style="background:#216686"></span>Deuda pública bruta</span>
+    </div>
+    <div style="position:relative;height:230px"><canvas id="fiscalChart"></canvas></div>
+  </div>
+</div>
+
+<div class="grid">
+  <div class="card warn">
+    <div class="tag o">Shock energético <span class="update-badge">May'26</span></div>
+    <h3>Guerra en Irán + fin de subsidios: el mayor shock de precios de combustibles en años</h3>
+    <p>Ecuador eliminó el subsidio al diésel en septiembre 2025 y adoptó un sistema de bandas de precios. Cuando el petróleo Brent subió por encima de US$90/barril por el conflicto iraní, el subsidio implícito al diésel volvió a dispararse: de casi cero en marzo 2026 a ~US$1.9/galón en mayo. La inflación anual pasó de 1.9% en 2025 a 2.6% en abril 2026 —el nivel más alto en dos años—, con transporte como principal motor. El ceasefire EE.UU.-Irán anunciado el 19 de junio (petróleo por debajo de US$80/barril) alivia esta presión, pero con acuerdo frágil.</p>
+    <div class="impl o">La dolarización amortigua la inflación en relación a los pares de la región, pero no elimina el traspaso de costos de energía a transporte y logística. La reforma de bandas de precios suaviza el impacto al consumidor pero mantiene exposición fiscal al shock externo.</div>
+  </div>
+  <div class="card risk">
+    <div class="tag r">Shock comercial</div>
+    <h3>Guerra arancelaria con Colombia: 100% de arancel, riesgo energético y logístico</h3>
+    <p>En los primeros meses de 2026, Ecuador escaló hasta un 100% de arancel sobre importaciones colombianas, afectando medicamentos, químicos, alimentos procesados y transporte pesado. Colombia respondió con gravámenes de hasta 75% a 191 productos ecuatorianos. El mayor riesgo: Colombia suspendió la venta de electricidad a Ecuador —una válvula crítica cuando el sistema hidroeléctrico está bajo presión—. La CAN ordenó desmontar las medidas pero Ecuador presentó recursos de nulidad. El 21 de mayo, Coca Codo Sinclair (25% de la capacidad nacional) se detuvo 5 horas por sedimentos.</p>
+    <div class="impl r">La combinación de tensión comercial regional + vulnerabilidad eléctrica interna es el riesgo de corto plazo más concreto para la continuidad operativa. Empresas con cadenas de suministro colombianas enfrentan disrupciones reales.</div>
+  </div>
+  <div class="card warn">
+    <div class="tag o">Shock climático <span class="update-badge">NOAA May'26</span></div>
+    <h3>El Niño 2026: probabilidad del 82% con impacto en agricultura, energía y alimentos</h3>
+    <p>La NOAA estimó en mayo 2026 una probabilidad del 82% de que El Niño emerja entre mayo y julio de 2026 y persista hasta inicios de 2027. Ecuador es extremadamente vulnerable: depende de la hidroelectricidad (~80% del mix), y sus principales exportaciones (camarón, banano, cacao, flores) son altamente sensibles a variaciones climáticas. El EIU revisó a la baja su proyección de exportaciones 2027 de 2.3% a 2.0% por este riesgo. Eventos previos de El Niño causaron inundaciones costeras, daños viales y presiones sobre precios de alimentos.</p>
+    <div class="impl r">El Niño es el riesgo de mayor impacto potencial sobre el sector real no petrolero. El pipeline de proyectos de generación eléctrica renovable (solar, eólica) es la respuesta estructural, pero el déficit de capacidad de transmisión y almacenamiento persiste en el horizonte 2026-2027.</div>
+  </div>
+</div>
+
+<div class="cgrid">
+  <div class="cw">
+    <div class="ct">Inflación y tasas de referencia</div>
+    <div class="cs">% promedio anual (2024–2030E) · EIU / BCE / Fed</div>
+    <div class="leg">
+      <span class="leg-i"><span class="dot" style="background:#CD4F4F"></span>Inflación CPI</span>
+      <span class="leg-i"><span class="dot" style="background:#216686"></span>Tasa préstamos</span>
+      <span class="leg-i"><span class="dot" style="background:#DC7528"></span>Fed rate (ancla externa)</span>
+    </div>
+    <div style="position:relative;height:220px"><canvas id="inflationChart"></canvas></div>
+  </div>
+  <div class="cw">
+    <div class="ct">Producción petrolera en declive estructural</div>
+    <div class="cs">Miles de barriles/día (2021–2030E) · EIU / BCE</div>
+    <div class="leg"><span class="leg-i"><span class="dot" style="background:#DC7528"></span>Producción b/d ('000)</span></div>
+    <div style="position:relative;height:220px"><canvas id="oilChart"></canvas></div>
+  </div>
+</div>
+
+<!-- SEC 3: FAMILIAS Y EMPLEO -->
+<div class="sec-hdr"><div class="sec-num">3</div><div class="sec-title">Familias y Consumo: Ingreso Real Bajo Presión</div><div class="sec-line"></div></div>
+
+<div class="kpi-row">
+  <div class="kpi o"><div class="kl">Desempleo 2026E</div><div class="kv">3.2%</div><div class="ks">Baja subempleo masivo</div></div>
+  <div class="kpi r"><div class="kl">Salario real 2026E</div><div class="kv">+0.5%</div><div class="ks">vs inflación 2.3%</div></div>
+  <div class="kpi"><div class="kl">Ing. disponible 2026E</div><div class="kv">+2.3%</div><div class="ks">real; desacelera</div></div>
+  <div class="kpi o"><div class="kl">PIB per cápita PPP</div><div class="kv">$17,393</div><div class="ks">2026E · 7mo LATAM</div></div>
+  <div class="kpi"><div class="kl">Gasto hogares 2026E</div><div class="kv">$91bn</div><div class="ks">+3.4% nominal vs 2025</div></div>
+  <div class="kpi g"><div class="kl">Desempleo 2030E</div><div class="kv">3.6%</div><div class="ks">Informalidad persiste</div></div>
+</div>
+
+<div class="cgrid">
+  <div class="cw">
+    <div class="ct">Salarios reales y consumo privado</div>
+    <div class="cs">% variación anual (2023–2027E) · EIU / BCE</div>
+    <div class="leg">
+      <span class="leg-i"><span class="dot" style="background:#216686"></span>Salario real</span>
+      <span class="leg-i"><span class="dot" style="background:#DC7528"></span>Consumo privado real</span>
+    </div>
+    <div style="position:relative;height:210px"><canvas id="wagesChart"></canvas></div>
+  </div>
+  <div class="cw">
+    <div class="ct">Gasto hogares por categoría</div>
+    <div class="cs">US$ miles de millones (2025–2027E) · EIU / BCE</div>
+    <div class="leg">
+      <span class="leg-i"><span class="dot" style="background:#216686"></span>Alimentos</span>
+      <span class="leg-i"><span class="dot" style="background:#1D7D54"></span>Vivienda/energía</span>
+      <span class="leg-i"><span class="dot" style="background:#CD4F4F"></span>Transporte/telecom</span>
+      <span class="leg-i"><span class="dot" style="background:#DC7528"></span>Salud</span>
+    </div>
+    <div style="position:relative;height:210px"><canvas id="houseChart"></canvas></div>
+  </div>
+</div>
+
+<div class="grid">
+  <div class="card warn">
+    <div class="tag o">Ingreso real</div>
+    <h3>Salario real crece solo 0.5% en 2026: la presión sobre el consumo discrecional</h3>
+    <p>La inflación en 2026 (2.3%-3.7% según la fuente) erosiona salarios reales que crecen apenas 0.5%. Aunque el desempleo oficial es bajo (3.2%), el subempleo y la informalidad laboral son estructuralmente altos —uno de los más altos de la OCDE—. Las contrataciones se mantienen estables pero sin impulso salarial real. El consumo privado, que fue el principal motor en 2025 (+2.7%), se modera a 2.3% en 2026. La pérdida de poder adquisitivo es más gradual que en otros países de la región, protegida por la dolarización.</p>
+    <div class="impl o">El consumo tenderá a concentrarse en categorías esenciales y de reposición, con demanda más selectiva en segmentos no esenciales. Alimentos, transporte y salud son las categorías más resilientes del basket del hogar ecuatoriano.</div>
+  </div>
+  <div class="card bl">
+    <div class="tag">Informalidad</div>
+    <h3>Subempleo masivo: el principal freno estructural a la demanda doméstica</h3>
+    <p>El desempleo oficial (~3%) esconde un mercado laboral profundamente informal. El EIU señala que la informalidad laboral es uno de los indicadores más débiles del ranking de Ecuador (labor market: 73/82). Los empleos formales con seguridad social representan menos del 50% de la fuerza laboral. Esto limita el acceso al crédito, la acumulación de ahorro y el consumo de bienes durables. La reforma laboral de Noboa (jornadas flexibles) fue aprobada parcialmente tras protestas, reduciendo las jornadas máximas de 12 a 10 horas diarias.</p>
+    <div class="impl g">La bancarización y el crédito al consumo tienen amplio potencial de crecimiento si mejora la formalización. El segmento de cooperativas de ahorro y crédito —donde hay mayor morosidad— es el canal financiero con mayor penetración en estratos informales.</div>
+  </div>
+  <div class="card risk">
+    <div class="tag r">Riesgo social</div>
+    <h3>Aprobación presidencial al 26%: el malestar social es el riesgo político más inmediato</h3>
+    <p>La aprobación de Noboa cayó del 60% al 26% en un año (CIEES, mayo 2026). El 80% de los ecuatorianos es pesimista sobre la situación del país. La inseguridad sigue siendo la primera preocupación (58%), pero ahora la economía —inflación, desempleo, salud— emerge como segunda preocupación creciente. Los toques de queda en 9 provincias (incluyendo Quito y Guayaquil) generaron resistencia. El gobierno mantiene la capacidad de conducción, pero con menor margen para sostener ajustes adicionales impopulares.</p>
+    <div class="impl r">El desgaste político acelera el riesgo de reversión de medidas de austeridad antes de las elecciones subnacionales de noviembre 2026. La agenda de ajuste fiscal puede desacelerarse ante el escrutinio ciudadano.</div>
+  </div>
+</div>
+
+<!-- SEC 4: PETRÓLEO -->
+<div class="sec-hdr"><div class="sec-num">4</div><div class="sec-title">Petróleo: El Ancla Fiscal en Declive Estructural</div><div class="sec-line"></div></div>
+
+<div class="callout">
+  <h4>El petróleo genera 1/3 de los ingresos fiscales, pero su producción cae sin parar desde 2014</h4>
+  <p>Ecuador alcanzó su pico de producción en 556,300 barriles/día en 2014. Para el primer trimestre de 2026, la producción promediaba 460,000 b/d — y en 2025 cayó a 442,000 b/d por problemas operativos de Petroecuador y el cierre gradual del campo ITT (Ishpingo-Tambococha-Tiputini), el cuarto más grande del país, clausurado por referéndum ambiental en 2023. A pesar del declive, el alto precio del petróleo en 2026 (Brent ~US$99/barril promedio EIU) genera ingresos fiscales adicionales para el Estado, compensando parcialmente el menor volumen. El gobierno apuesta por la minería de cobre y oro como la próxima fuente de ingresos extractivos.</p>
+</div>
+
+<div class="cgrid">
+  <div class="cw">
+    <div class="ct">Exportaciones totales de bienes</div>
+    <div class="cs">US$ miles de millones · fob (2024–2030E) · EIU</div>
+    <div class="leg">
+      <span class="leg-i"><span class="dot" style="background:#DC7528"></span>Petróleo y derivados</span>
+      <span class="leg-i"><span class="dot" style="background:#1D7D54"></span>Exportaciones no petroleras</span>
+    </div>
+    <div style="position:relative;height:200px"><canvas id="exportsChart"></canvas></div>
+  </div>
+  <div class="cw">
+    <div class="ct">Inversión extranjera directa</div>
+    <div class="cs">Flujos anuales en US$ bn (2021–2030E) · EIU</div>
+    <div class="leg"><span class="leg-i"><span class="dot" style="background:#1D7D54"></span>FDI inflows</span></div>
+    <div style="position:relative;height:200px"><canvas id="fdiChart"></canvas></div>
+  </div>
+</div>
+
+<div class="grid">
+  <div class="card risk">
+    <div class="tag r">Petróleo</div>
+    <h3>Petroecuador: mismanagement + declive geológico = riesgo fiscal sistémico</h3>
+    <p>Petroecuador genera la mayoría del crudo ecuatoriano pero arrastra décadas de mismanagement, fiscalidad austera y escasa inversión. La refinería Esmeraldas opera por debajo de su capacidad, obligando a importar combustibles refinados. El campo ITT (cerrado por referéndum 2023) representaba 150,000 b/d potenciales y 1.3bn barriles. El EIU proyecta que la producción continúe cayendo de 442,000 b/d (2025) a 410,000 b/d en 2030. Cada 10,000 b/d menos equivale a ~US$200-300M menos en ingresos fiscales anuales a precios actuales.</p>
+    <div class="impl r">El declive del petróleo es el mayor riesgo fiscal de largo plazo de Ecuador. La transición de una economía rentista petrolera a una diversificada en exportaciones no petroleras y minería toma más de una década y requiere reformas institucionales profundas.</div>
+  </div>
+  <div class="card gr">
+    <div class="tag g">Exportaciones no petroleras</div>
+    <h3>Camarón, banano y cacao: Ecuador domina mercados globales con potencial de escala</h3>
+    <p>En 2025, el camarón creció 14% interanual y Ecuador abastece ~50% del consumo de camarón chino — el mayor mercado del mundo con ~20% de las exportaciones totales del país. El banano, el cacao y las flores han diversificado destinos hacia Medio Oriente, Asia y la UE. El TLC con China (2024) y el Acuerdo de Comercio Recíproco con EE.UU. (1H 2026) son catalizadores. El impacto del El Niño sobre la producción agrícola es el principal riesgo de corto plazo para este vector de crecimiento.</p>
+    <div class="impl g">Las exportaciones no petroleras son el motor de crecimiento más dinámico y resiliente de Ecuador. Sectores como acuicultura (camarón), agroindustria de cacao y flores tienen modelos de negocios sólidos con demanda global estructural creciente.</div>
+  </div>
+</div>
+
+<!-- SEC 5: SECTORES DE INVERSIÓN -->
+<div class="sec-hdr"><div class="sec-num">5</div><div class="sec-title">Sectores de Inversión: Minería, Energía y Agroindustria</div><div class="sec-line"></div></div>
+
+<div class="cgrid">
+  <div class="cw">
+    <div class="ct">Composición de exportaciones 2026E</div>
+    <div class="cs">Distribución estimada por sector · BCE / EIU · Total ~US$40.4bn</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:center">
+      <div style="position:relative;height:240px"><canvas id="sectorChart"></canvas></div>
+      <div class="leg" style="flex-direction:column;gap:10px">
+        <span class="leg-i"><span class="dot" style="background:#DC7528;width:14px;height:14px"></span><strong>Petróleo y derivados (~33%)</strong> — ~US$13.4bn · en declive</span>
+        <span class="leg-i"><span class="dot" style="background:#1D7D54;width:14px;height:14px"></span><strong>Camarón (~22%)</strong> — ~US$8.9bn · 50% del mercado chino</span>
+        <span class="leg-i"><span class="dot" style="background:#216686;width:14px;height:14px"></span><strong>Banano (~12%)</strong> — ~US$4.8bn · 1er exportador global</span>
+        <span class="leg-i"><span class="dot" style="background:#9b7ecb;width:14px;height:14px"></span><strong>Cacao y flores (~7%)</strong> — ~US$2.8bn · diversificando</span>
+        <span class="leg-i"><span class="dot" style="background:#4a90b8;width:14px;height:14px"></span><strong>Minería (cobre/oro) (~5%)</strong> — ~US$2bn · en aceleración</span>
+        <span class="leg-i"><span class="dot" style="background:#CD4F4F;width:14px;height:14px"></span><strong>Enlatados pescado (~5%)</strong> — ~US$2bn</span>
+        <span class="leg-i"><span class="dot" style="background:#b0aaaa;width:14px;height:14px"></span><strong>Otros (~16%)</strong> — diversificado</span>
+      </div>
+    </div>
+  </div>
+  <div class="cw">
+    <div class="ct">Proyectos mineros en desarrollo</div>
+    <div class="cs">Inversión estimada US$M · Gobierno Ecuador / EIU 2026</div>
+    <div style="position:relative;height:240px"><canvas id="miningChart"></canvas></div>
+  </div>
+</div>
+
+<div class="grid">
+  <div class="card gr">
+    <div class="tag g">Minería</div>
+    <h3>Apertura del registro minero por primera vez desde 2018: la apuesta de largo plazo</h3>
+    <p>Noboa reabrió el registro minero en 2025 (cerrado desde la administración Moreno). Los proyectos Mirador (ENAMI-Tongling, cobre), Fruta del Norte (Lundin Gold), San Carlos-Panantza y el potencial de Cascabel (SolGold) representan una nueva ola exportadora. La construcción de nuevas minas en 2026-27 impulsará la inversión fija en 3.6% en 2027. El EIU señala que las exportaciones mineras de cobre y oro comenzarán a materializarse hacia el final del período de proyección (2028-2030), diversificando los ingresos de exportación más allá del petróleo.</p>
+    <div class="impl g">El pipeline minero es la mayor oportunidad de project finance en Ecuador en la próxima década. Los proyectos de cobre y oro requieren estructuración sofisticada y tienen perfiles de deuda de largo plazo con flujos predecibles una vez en operación.</div>
+  </div>
+  <div class="card bl">
+    <div class="tag">Energía</div>
+    <h3>Hidropower al límite: la apuesta privada en solar, eólica y BESS es urgente</h3>
+    <p>Ecuador genera ~80% de su electricidad con hidropower, exponiendo al sistema a shocks climáticos y sequías. El apagón masivo de 2024 (racionamientos de 8-14h/día) costó ~0.5% del PIB en output perdido. Noboa abrió la generación privada de energía por primera vez. El EIU proyecta inversión privada en generación solar y eólica como motor de la FBCF en 2026-2027. Sin embargo, la baja capacidad de transmisión y almacenamiento (BESS) limita la integración de renovables — replicando el cuello de botella que Chile enfrentó en 2025.</p>
+    <div class="impl g">Oportunidades en project finance para BESS, generación solar/eólica y líneas de transmisión. El modelo PPP para generación eléctrica está siendo piloteado por el gobierno Noboa como respuesta a la crisis de 2024. Multilaterales (BID, CAF, IFC) son catalizadores naturales.</div>
+  </div>
+  <div class="card warn">
+    <div class="tag o">Riesgo urgente</div>
+    <h3>TLC con EE.UU.: asimétrico, temporal y con riesgo legal — renegociación en agosto 2026</h3>
+    <p>El Acuerdo de Comercio Recíproco con EE.UU. (firmado 1H 2026) exonera de aranceles al 53% de las exportaciones no petroleras ecuatorianas (banano, camarón, cacao, flores). Sin embargo: (a) los beneficios para Ecuador son temporales, los de EE.UU. son permanentes; (b) enfrenta riesgos legales en tribunales federales de EE.UU.; (c) el propio Noboa reconoció que debe renegociarse en agosto 2026; (d) abre a más competencia de exportadores estadounidenses en el mercado ecuatoriano. China observa el acercamiento con atención — el TLC China-Ecuador de 2024 también está madurando.</p>
+    <div class="impl o">El acuerdo es positivo para el corto plazo (exportaciones no petroleras), pero su asimetría y temporalidad introducen incertidumbre para la planificación de inversiones de mediano plazo orientadas al mercado estadounidense.</div>
+  </div>
+</div>
+
+<!-- SEC 6: NOBOA Y REFORMAS -->
+<div class="sec-hdr"><div class="sec-num">6</div><div class="sec-title">Gobierno Noboa: Segunda Oportunidad con Capital Político Desgastado</div><div class="sec-line"></div></div>
+
+<div class="grid">
+  <div class="card bl">
+    <div class="tag">Noboa 2do mandato</div>
+    <h3>Reelecto en abril 2025 con mandato hasta 2029, pero con aprobación en caída libre</h3>
+    <p>Daniel Noboa (ADN, centro-derecha) fue reelecto cómodamente en abril 2025 derrotando a Luisa González (RC). Su segundo término arrancó con una agenda ambiciosa: reducir ministerios de 20 a 10, consolidar el programa del FMI, profundizar seguridad, atraer inversión y firmar acuerdos comerciales. Sin embargo, cuatro derrotas sucesivas en política interior debilitaron su capital: referéndum perdido (noviembre 2025), protestas laborales (marzo 2026), crisis hospitalaria y la caída de aprobación al 26%. El EIU prevé que Noboa complete su mandato y que ADN gane las elecciones subnacionales de noviembre 2026, favorecido por la suspensión de RC.</p>
+    <div class="impl o">La ventana de reformas existe pero es más estrecha de lo esperado. El oficialismo necesita los votos de partidos menores en cada iniciativa, lo que dilata y modera las reformas. Las elecciones de noviembre 2026 son el próximo punto de inflexión político.</div>
+  </div>
+  <div class="card warn">
+    <div class="tag o">Gobernabilidad</div>
+    <h3>Asamblea fragmentada: ADN necesita alianzas para cada votación</h3>
+    <p>ADN tiene 66/151 escaños en la Asamblea Nacional — la primera minoría, pero lejos de la mayoría simple (77). La principal oposición (RC) está suspendida 9 meses, lo que favorece coyunturalmente al oficialismo. Pero la coalición es frágil: partidos menores como PSC (Partido Social Cristiano) y Pachakutik tienen posiciones específicas que extraen concesiones. La reforma laboral fue parcialmente recortada por presiones. El EIU señala que la gobernabilidad será el limitante más importante para la agenda de reformas estructurales en 2026-2027.</p>
+    <div class="impl o">Las reformas serán aprobadas pero probablemente diluidas. Los contratos de estabilidad jurídica para inversiones — clave para la bankabilidad de proyectos mineros y energéticos — requieren mayorías calificadas que el gobierno no garantiza.</div>
+  </div>
+</div>
+
+<!-- TABLA DE REFORMAS -->
+<div class="sec-hdr" style="margin-top:1.5rem"><div class="sec-title" style="font-size:1.1rem">Estado de las reformas de Noboa: avance, timeline y relevancia para los actores financieros</div></div>
+
+<div class="timeline">
+  <div class="tl-row hdr">
+    <div class="tl-cell">Reforma</div>
+    <div class="tl-cell">Estado</div>
+    <div class="tl-cell">Timeline estimado de concreción</div>
+    <div class="tl-cell">Relevancia para los actores financieros</div>
+  </div>
+  <div class="tl-row">
+    <div class="tl-cell"><strong>Eliminación subsidio diésel + sistema de bandas</strong><span style="font-size:11px;color:#888">Sep 2025</span></div>
+    <div class="tl-cell"><span class="pill pl">Ejecutado</span><div class="prog-bar"><div class="prog-fill" style="width:100%;background:#1D7D54"></div></div></div>
+    <div class="tl-cell" style="color:var(--text)">Implementado en septiembre 2025. Reducción del subsidio estructural al diésel — la mayor reforma fiscal del gobierno Noboa. Generó protestas pero fue sostenida. Sigue habiendo un subsidio implícito residual cuando el precio internacional sube por encima del techo de la banda (~US$1.9/galón en mayo 2026).</div>
+    <div class="tl-cell">Señal positiva de disciplina fiscal para el FMI y los mercados. Condición necesaria para mantener el EFF vigente. Reduce el déficit estructural en ~1.5% del PIB en el mediano plazo.</div>
+  </div>
+  <div class="tl-row">
+    <div class="tl-cell"><strong>Alza de IVA 12% → 15%</strong><span style="font-size:11px;color:#888">Financiamiento déficit</span></div>
+    <div class="tl-cell"><span class="pill pl">Ejecutado</span><div class="prog-bar"><div class="prog-fill" style="width:100%;background:#1D7D54"></div></div></div>
+    <div class="tl-cell" style="color:var(--text)">Implementado al inicio del segundo mandato. Generó un shock de demanda transitorio, pero la inflación se mantuvo baja (dolarización amortiguó el traspaso). Contribuye ~US$1,200M adicionales anuales al fisco. Fue políticamente costosa y contribuyó al desgaste de la aprobación presidencial.</div>
+    <div class="tl-cell">Mejora la posición fiscal primaria. Reduce la vulnerabilidad soberana y el costo de financiamiento. El crédito bancario al consumo tiene menor riesgo sistémico con una base fiscal más sólida.</div>
+  </div>
+  <div class="tl-row">
+    <div class="tl-cell"><strong>Emisiones soberanas internacionales</strong><span style="font-size:11px;color:#888">$5bn en 5 meses</span></div>
+    <div class="tl-cell"><span class="pill pl">Ejecutado</span><div class="prog-bar"><div class="prog-fill" style="width:100%;background:#1D7D54"></div></div></div>
+    <div class="tl-cell" style="color:var(--text)">US$4,000M en enero 2026 (spread 404 bps) + US$1,000M en mayo 2026 (8.5%, 50 bps mejor). Upgrade de Moody's y Fitch. Primera colocación exitosa desde 2019. Riesgo país en mínimo de 11 años. Refinanció US$3,000M en vencimientos 2030-2035, aliviando el perfil de amortizaciones.</div>
+    <div class="tl-cell">Reducción de tasas en el sistema financiero local (lending rate: 7.8% en 2026E desde 10.9% en 2024). Mejora el costo de financiamiento para el sector corporativo y abre mercado de project bonds denominados en dólares.</div>
+  </div>
+  <div class="tl-row">
+    <div class="tl-cell"><strong>Reducción ministerios 20 → 14 → 10</strong><span style="font-size:11px;color:#888">Eficiencia del Estado</span></div>
+    <div class="tl-cell"><span class="pill pm">En ejecución</span><div class="prog-bar"><div class="prog-fill" style="width:65%;background:#DC7528"></div></div></div>
+    <div class="tl-cell" style="color:var(--text)">Primera reducción (20→14) ejecutada en mid-2025. Segunda reducción (14→10) anunciada en junio 2026. El EIU advierte riesgo: el ahorro en gasto corriente puede generar mayor demanda de servicios en el mediano plazo (ej. recorte del ministerio de mujer podría elevar gasto en salud). Estimado de implementación completa: <strong>3T2026</strong>.</div>
+    <div class="tl-cell">Señal positiva de eficiencia estatal. Impacto fiscal modesto en el corto plazo pero políticamente relevante para la narrativa de austeridad del gobierno.</div>
+  </div>
+  <div class="tl-row">
+    <div class="tl-cell"><strong>Reforma COOTAD (presupuesto subnacional)</strong><span style="font-size:11px;color:#888">Inversión pública local</span></div>
+    <div class="tl-cell"><span class="pill pl">Aprobada</span><div class="prog-bar"><div class="prog-fill" style="width:90%;background:#1D7D54"></div></div></div>
+    <div class="tl-cell" style="color:var(--text)">Aprobada en la Asamblea en marzo 2026. Obliga a municipios y prefecturas a destinar mayor porcentaje del presupuesto a inversión y obra pública (vs. gasto corriente). Relevante de cara a las elecciones subnacionales de noviembre 2026 — el control de los presupuestos locales define el ciclo de inversión pública descentralizada.</div>
+    <div class="tl-cell">Potencia la demanda de infraestructura local. Oportunidades en financiamiento estructurado de municipios que ahora tienen mandato de invertir. Monitorear el uso efectivo vs. el desvío hacia gasto corriente disfrazado.</div>
+  </div>
+  <div class="tl-row">
+    <div class="tl-cell"><strong>Apertura del registro minero</strong><span style="font-size:11px;color:#888">Primera vez desde 2018</span></div>
+    <div class="tl-cell"><span class="pill pm">En progreso</span><div class="prog-bar"><div class="prog-fill" style="width:50%;background:#DC7528"></div></div></div>
+    <div class="tl-cell" style="color:var(--text)">Anunciado en 2025. Permite a empresas privadas solicitar concesiones mineras por primera vez desde el cierre del registro en la era Moreno. Proyectos en etapa de exploración: Cascabel (SolGold, cobre-oro), San Carlos-Panantza. Riesgo: oposición de comunidades indígenas y grupos ambientales, que históricamente han paralizado proyectos vía referéndum (como ITT). Estimado de primeras concesiones activas: <strong>2027–2028</strong>.</div>
+    <div class="tl-cell">La minería metálica es la mayor oportunidad de inversión privada de largo plazo en Ecuador. Los proyectos en etapa de exploración tomarán 3-5 años en llegar a construcción. Oportunidades de financiamiento estructurado para Mirador expansion y Fruta del Norte fase 2.</div>
+  </div>
+  <div class="tl-row">
+    <div class="tl-cell"><strong>PPP en generación eléctrica privada</strong><span style="font-size:11px;color:#888">Solar, eólica, BESS</span></div>
+    <div class="tl-cell"><span class="pill pm">En desarrollo</span><div class="prog-bar"><div class="prog-fill" style="width:35%;background:#DC7528"></div></div></div>
+    <div class="tl-cell" style="color:var(--text)">El gobierno abrió licitaciones para generación eléctrica privada tras el apagón de 2024. Los contratos de compraventa (PPAs) con el Estado son la estructura prevista. Riesgo regulatorio: el historial de incumplimientos de contratos con el Estado ecuatoriano es elevado. Estimado de primeros proyectos con PPAs firmados: <strong>3T2026–1T2027</strong>.</div>
+    <div class="tl-cell">Oportunidades en project finance con PPA como colateral. Multilaterales (BID, IFC) como garantizadores parciales son condición necesaria dada la exposición regulatoria. La urgencia energética del país es la palanca más poderosa para destrabar estos proyectos.</div>
+  </div>
+  <div class="tl-row">
+    <div class="tl-cell"><strong>Renegociación TLC con EE.UU.</strong><span style="font-size:11px;color:#888">Agosto 2026</span></div>
+    <div class="tl-cell"><span class="pill ph">Propuesta</span><div class="prog-bar"><div class="prog-fill" style="width:20%;background:#CD4F4F"></div></div></div>
+    <div class="tl-cell" style="color:var(--text)">El acuerdo actual (1H 2026) es transitorio y asimétrico. El presidente Noboa reconoció que debe renegociarse en agosto 2026. Resultado más probable: Ecuador obtiene mayor acceso permanente en productos agroindustriales (camarón, banano, flores, cacao) a cambio de más apertura en manufactura y servicios de EE.UU. Riesgo: tensión con China que observa el acercamiento con atención.</div>
+    <div class="tl-cell">La permanencia del acceso preferencial al mercado estadounidense es el factor que más impacta la bankabilidad de proyectos agroindustriales de exportación. Monitorear el resultado de la renegociación de agosto como hito clave.</div>
+  </div>
+</div>
+
+<!-- SEC 7: RIESGOS -->
+<div class="sec-hdr"><div class="sec-num">7</div><div class="sec-title">Riesgos: Mapa Actualizado al 17 de Junio 2026</div><div class="sec-line"></div></div>
+
+<div class="callout">
+  <h4>Actualización post-IPoM: ceasefire EE.UU.–Irán del 19 de junio cambia el escenario energético</h4>
+  <p>El cierre estadístico del EIU (12 de junio) tenía el petróleo en ~US$90/barril con el conflicto activo. El ceasefire anunciado el 19 de junio llevó el Brent por debajo de US$80/barril en dos días. Para Ecuador esto tiene efectos mixtos: (a) positivo: reduce el subsidio implícito al diésel (~US$1.3/galón menos que en mayo 2026), alivia la presión inflacionaria y reduce el gasto fiscal en combustibles; (b) negativo: Ecuador también es exportador de petróleo crudo — menores precios reducen los ingresos de exportación y fiscal. Con petróleo en US$75-80/barril, el impacto neto sería ligeramente positivo para el fisco dada la proporción de combustible importado vs. exportado. El riesgo persiste: el BCE advirtió que el conflicto tuvo "constantes vaivenes".</p>
+</div>
+
+<table class="rtable">
+  <thead>
+    <tr><th style="width:25%">Riesgo</th><th style="width:12%">Prob.</th><th style="width:12%">Impacto</th><th>Descripción e implicancia para los actores financieros</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Extensión del racionamiento eléctrico (Coca Codo + El Niño)</td><td><span class="pill pvh">Muy alta</span></td><td><span class="pill pvh">Sistémico</span></td><td>La combinación de dependencia del hidropower + potencial El Niño 2026-27 + corte energético de Colombia hace que el racionamiento eléctrico sea el riesgo operativo más inmediato. El 21 de mayo ya hubo una parada de 5h en Coca Codo Sinclair. Un retorno a apagones masivos como 2024 costaría ~0.5% del PIB en output perdido y destruiría la recuperación de la confianza empresarial lograda con las emisiones de deuda.</td></tr>
+    <tr><td>El Niño 2026–2027: 82% de probabilidad (NOAA)</td><td><span class="pill pvh">Muy alta</span></td><td><span class="pill ph">Alto</span></td><td><strong>Nuevo riesgo (APOYO may'26):</strong> NOAA estima 82% de probabilidad de El Niño emergente entre mayo y julio 2026 con persistencia hasta inicios de 2027. Afectaría: producción de camarón, banano, cacao y flores; infraestructura vial costera; energía hidroeléctrica; y logística de exportaciones. El EIU ya revisó a la baja el crecimiento de exportaciones 2027 de 2.3% a 2.0% por este riesgo.</td></tr>
+    <tr><td>Ecuador deriva hacia el autoritarismo</td><td><span class="pill ph">Alta</span></td><td><span class="pill pvh">Muy alto</span></td><td>El EIU identifica este escenario con alta probabilidad (intensidad 20/25). Noboa ha debilitado a la Corte Constitucional, suspendido partidos opositores y adelantado elecciones. La concentración de poder ejecutivo con instituciones débiles replica el patrón que históricamente generó inestabilidad en Ecuador (4 presidentes depuestos desde 1997). Un giro autoritario dispararía la prima de riesgo soberana y frenaría el FDI.</td></tr>
+    <tr><td>Escalada de la guerra arancelaria con Colombia</td><td><span class="pill pm">Media-Alta</span></td><td><span class="pill ph">Alto</span></td><td>Los aranceles recíprocos ya alcanzan 100%/75%. Colombia puede mantener la suspensión de energía eléctrica. La escalada daña: abastecimiento de insumos (medicamentos, químicos, materias primas), logística transfronteriza, sector salud y costos de transporte. Aunque la CAN ordenó desmontar las medidas, Ecuador presentó recursos de nulidad. Una resolución pacífica es el escenario más probable, pero la normalización tomará tiempo.</td></tr>
+    <tr><td>Regulación más estricta detiene proyectos de recursos naturales</td><td><span class="pill pm">Moderada</span></td><td><span class="pill pvh">Muy alto</span></td><td>Los grupos indígenas y ambientales tienen capacidad demostrada de forzar referéndums que cierran proyectos (ITT en 2023). La apertura del registro minero genera reacción: protestas de comunidades del Oriente y zonas de alta biodiversidad. Si un nuevo referéndum ambiental bloquea Cascabel o Mirador expansion, el pipeline de inversión minera de largo plazo se reduce sustancialmente.</td></tr>
+    <tr><td>Violencia del crimen organizado paraliza operaciones</td><td><span class="pill pm">Moderada</span></td><td><span class="pill pvh">Muy alto</span></td><td>La tasa de homicidios subió de 38.7 por 100,000 en 2024 a 51.7 en 2025 — el mayor salto en la historia moderna del país. Los carteles operan con tácticas de terror contra instituciones y funcionarios. El costo operativo de las empresas (seguros, seguridad privada, extorsión) sube estructuralmente. El turismo, los servicios y el comercio son los sectores más afectados.</td></tr>
+    <tr><td>Ruptura del programa con el FMI / desvío fiscal</td><td><span class="pill pm">Moderada</span></td><td><span class="pill ph">Alto</span></td><td>El déficit 2025 ya superó las metas del FMI (~US$5.4bn vs. meta de US$4bn bajo criterio contable estricto). Para 2026 hay que cerrar una brecha adicional de ~US$2,000M. En año electoral (noviembre 2026), la presión sobre el gasto social y de seguridad es alta. Una ruptura con el FMI dispararía el riesgo país y cerraría el acceso a mercados internacionales — el activo más valioso logrado en los últimos 18 meses.</td></tr>
+    <tr><td>EE.UU. revierte o no renueva el acuerdo comercial</td><td><span class="pill pm">Moderada</span></td><td><span class="pill pm">Medio</span></td><td>El acuerdo es temporal y enfrenta riesgos legales en tribunales federales. Si la renegociación de agosto 2026 fracasa o EE.UU. impone aranceles adicionales (como los de Sección 301), las exportaciones no petroleras pierden el 53% de acceso preferencial. Afecta principalmente a camarón, banano, cacao y flores. El TLC con China es el hedge natural, pero la transición toma tiempo.</td></tr>
+  </tbody>
+</table>
+
+<!-- SEC 8: SECTOR FINANCIERO -->
+<div class="sec-hdr"><div class="sec-num">8</div><div class="sec-title">Sector Financiero: Estabilización, Margen Estrecho y Ceilling de Tasas</div><div class="sec-line"></div></div>
+
+<div class="kpi-row">
+  <div class="kpi g"><div class="kl">Sector financiero / PIB</div><div class="kv">4.9%</div><div class="ks">Subdesarrollado (2025)</div></div>
+  <div class="kpi o"><div class="kl">Tasa préstamos 2026E</div><div class="kv">7.8%</div><div class="ks">Baja desde 10.9% en 2024</div></div>
+  <div class="kpi"><div class="kl">Tasa depósitos 2026E</div><div class="kv">5.9%</div><div class="ks">Baja desde 8.0% en 2024</div></div>
+  <div class="kpi r"><div class="kl">Spread bancario 2026E</div><div class="kv">1.9pp</div><div class="ks">Comprimido por ceiling</div></div>
+  <div class="kpi g"><div class="kl">Riesgo país</div><div class="kv">404bps</div><div class="ks">Mínimo desde 2015</div></div>
+  <div class="kpi o"><div class="kl">Cooperativas</div><div class="kv">NPLs↑</div><div class="ks">Riesgo de contagio</div></div>
+</div>
+
+<div class="cgrid">
+  <div class="cw">
+    <div class="ct">Tasas de interés del sistema bancario</div>
+    <div class="cs">% promedio anual (2024–2030E) · BCE / EIU</div>
+    <div class="leg">
+      <span class="leg-i"><span class="dot" style="background:#216686"></span>Tasa préstamos</span>
+      <span class="leg-i"><span class="dot" style="background:#1D7D54"></span>Tasa depósitos</span>
+      <span class="leg-i"><span class="dot" style="background:#DC7528"></span>Fed rate (ancla)</span>
+    </div>
+    <div style="position:relative;height:210px"><canvas id="ratesChart"></canvas></div>
+  </div>
+  <div class="cw">
+    <div class="ct">Desempleo y salario real</div>
+    <div class="cs">% (2022–2030E) · EIU / BCE · indicadores de calidad de cartera</div>
+    <div class="leg">
+      <span class="leg-i"><span class="dot" style="background:#CD4F4F"></span>Tasa desempleo</span>
+      <span class="leg-i"><span class="dot" style="background:#216686"></span>Salario real % (eje der.)</span>
+    </div>
+    <div style="position:relative;height:210px"><canvas id="employChart"></canvas></div>
+  </div>
+</div>
+
+<div class="grid">
+  <div class="card gr">
+    <div class="tag g">Oportunidad</div>
+    <h3>Retorno a mercados + baja de tasas = ventana para crédito productivo y project finance</h3>
+    <p>La mejora del riesgo soberano baja las tasas de referencia en el sistema local: la tasa de préstamos cae de 10.9% (2024) a 7.8% (2026E) y seguirá bajando conforme la Fed retome el ciclo de baja en 2026-27 (EIU: -50bps en late 2026 y early 2027). El crédito está creciendo de nuevo, con bancos comerciales superando a cooperativas en crecimiento de cartera. El JPMorgan firmó en febrero 2026 un crédito de US$500M para expansión de acceso a crédito para PyMEs. El sector financiero es pequeño (4.9% del PIB) pero con potencial de expansión significativo si se reduce la informalidad.</p>
+    <div class="impl g">La baja de tasas mejora la rentabilidad del sector productivo y amplía la demanda solvente de crédito. La emisión de project bonds en dólares — facilitada por la dolarización — es el instrumento más natural para los proyectos mineros y de energía.</div>
+  </div>
+  <div class="card warn">
+    <div class="tag o">Restricciones</div>
+    <h3>Ceiling de tasas y mercado de capitales poco profundo: los dos cuellos de botella</h3>
+    <p>Ecuador regula las tasas activas con techos máximos por segmento, lo que comprime márgenes y desincentiva el crédito a segmentos de mayor riesgo. El mercado de capitales está fragmentado entre la Bolsa de Guayaquil y la Bolsa de Quito —que compiten por un pool limitado de emisiones— y no tiene inversores institucionales domésticos relevantes (los fondos de pensiones del IESS son gestionados por el Estado). El EIU señala que la intermediación financiera mejorará sólo gradualmente, limitando la expansión del crédito al sector privado.</p>
+    <div class="impl o">El ceiling de tasas es el principal obstáculo estructural para la expansión del crédito en segmentos de mayor riesgo. La reforma del sistema de tasas es políticamente difícil (afecta a deudores) pero necesaria para el desarrollo del mercado de capitales local.</div>
+  </div>
+  <div class="card risk">
+    <div class="tag r">Riesgo sistémico</div>
+    <h3>Cooperativas de ahorro y crédito: NPLs elevados y riesgo de contagio en estratos bajos</h3>
+    <p>La banca privada mantiene indicadores sólidos (NPLs manejables, liquidez adecuada, reservas suficientes). Sin embargo, el sector de cooperativas —principal canal de crédito para los estratos de ingreso bajo y medio-bajo— muestra una morosidad elevada y creciente. El EIU advierte sobre riesgos de contagio en los estratos de menores ingresos. Las cooperativas no están bajo la misma supervisión que los bancos y tienen menor acceso a líneas de liquidez de emergencia. Una corrección desordenada en cooperativas medianas afectaría la confianza en el sistema financiero en general.</p>
+    <div class="impl r">Monitorear la cartera de cooperativas como indicador adelantado de estrés financiero en segmentos informales. Una crisis de cooperativas en año electoral (2026) podría generar presión política para rescates fiscales que comprometan la consolidación con el FMI.</div>
+  </div>
+</div>
+
+<!-- SEC 9: CONCLUSIONES -->
+<div class="sec-hdr"><div class="sec-num">9</div><div class="sec-title">Síntesis: Las 8 Claves del Escenario Ecuador 2026–2027</div><div class="sec-line"></div></div>
+
+<div class="dark-box">
+  <p class="ey">Síntesis ejecutiva · Junio 2026 · Actualizada con EIU jun'26, APOYO may'26 y ceasefire EE.UU.–Irán 19 jun'26</p>
+  <p class="lead">Ecuador navega un año de ajuste moderado (PIB 2.3%) con una mejora histórica en credibilidad financiera — pero sobre bases estructuralmente frágiles: petróleo en declive, seguridad crítica, informalidad masiva y sin política monetaria propia.</p>
+  <p class="body">La clave es separar el ruido de corto plazo — aprobación del 26%, guerra arancelaria con Colombia, El Niño — de las tendencias estructurales que están cambiando el perfil de riesgo: la vuelta a los mercados, el declive del petróleo compensado por exportaciones no petroleras y minería, y la apertura del registro minero. El ceasefire iraní del 19 de junio es un alivio parcial para la inflación, aunque sus efectos sobre los ingresos del petróleo son mixtos.</p>
+</div>
+
+<div class="grid">
+  <div class="card succ"><div class="tag g">Macro · Fortaleza</div><h3>Dolarización + programa FMI + vuelta a mercados: el mejor ancla de credibilidad</h3><p>La dolarización elimina el riesgo cambiario y ancla expectativas de inflación. El EFF del FMI ($6.5bn) es el respaldo institucional más sólido que ha tenido Ecuador en décadas. El riesgo país en 404 bps (mínimo desde 2015) y $5,000M emitidos en 5 meses son la señal más concreta de credibilidad recuperada.</p><div class="impl g">Entorno financiero externo muy mejorado respecto a 2020-2024. La credibilidad soberana ganada es el activo más valioso del gobierno Noboa — y el más frágil si se rompe la disciplina fiscal.</div></div>
+  <div class="card risk"><div class="tag r">Macro · Riesgo fiscal</div><h3>Deuda 49% del PIB y brecha de US$2,000M: 2026 es el año fiscal más exigente</h3><p>El déficit 2025 superó las metas del FMI bajo criterio contable estricto ($5.4bn vs. meta $4bn). Para 2026 hay que cerrar una brecha adicional de ~$2,000M con un gobierno en elecciones locales y con aprobación al 26%. La deuda pública se proyecta en 49% del PIB en 2026 (EIU), con tendencia decreciente si se mantiene la disciplina. Los vencimientos de 2032 siguen siendo un riesgo de mediano plazo.</p><div class="impl r">La continuidad del programa del FMI es la condición necesaria para preservar el acceso a mercados. Una ruptura desencadenaría una crisis de financiamiento con pocos precedentes positivos en la historia ecuatoriana.</div></div>
+  <div class="card warn"><div class="tag o">Energía · Urgente</div><h3>Vulnerabilidad eléctrica + Colombia + El Niño: el mayor riesgo operativo de 2026</h3><p>El sistema eléctrico ecuatoriano tiene tres vulnerabilidades simultáneas: dependencia del hidropower (80%), suspensión de la interconexión colombiana y alta probabilidad de El Niño. El 21 de mayo Coca Codo Sinclair se detuvo 5 horas — fue la 3ª parada de 2026. Un retorno a apagones masivos como 2024 costaría ~0.5% del PIB en output perdido.</p><div class="impl r">La crisis energética de 2024 demostró que los apagones son la variable que más rápidamente impacta en la confianza empresarial y el ciclo de consumo. La inversión privada en generación eléctrica es urgente y bankable.</div></div>
+  <div class="card succ"><div class="tag g">Exportaciones · Fortaleza</div><h3>Camarón, banano y cacao: anclas de crecimiento resilientes e independientes del petróleo</h3><p>Las exportaciones no petroleras crecieron 6.4% en 2025 y totalizan ~US$27bn. El camarón ecuatoriano domina el mercado chino (~50% de su consumo). El TLC con EE.UU. exonera el 53% de estas exportaciones. Son sectores con demanda global estructural creciente y bajo el radar de los shocks políticos internos.</p><div class="impl g">El sector agroindustrial no petrolero es el vector de crecimiento más robusto y menos dependiente de decisiones políticas. Las cadenas de valor de camarón, banano y cacao tienen acceso a financiamiento con multilaterales a tasas preferenciales.</div></div>
+  <div class="card risk"><div class="tag r">Petróleo · Declive</div><h3>De 556,000 b/d (2014) a 410,000 b/d (2030E): la transición fiscal más importante del país</h3><p>El petróleo genera 1/3 del ingreso fiscal pero cae estructuralmente. El campo ITT (cerrado en 2023) representaba 150,000 b/d potenciales. Petroecuador arrastra mismanagement y escasa inversión. Sin reformas profundas en Petroecuador o un reemplazo por ingresos mineros, la posición fiscal se deteriorará hacia finales del período de proyección.</p><div class="impl r">El declive del petróleo es el más silencioso pero el más estructuralmente determinante de los riesgos fiscales de Ecuador. La minería de cobre y oro es la respuesta de largo plazo, pero el horizonte es 2028-2030.</div></div>
+  <div class="card warn"><div class="tag o">Política · Riesgo</div><h3>Aprobación al 26%, autoritarismo latente y elecciones de noviembre: el triple desafío político</h3><p>Noboa completa el mandato según el EIU, pero con aprobación históricamente baja. La suspensión de RC favorece a ADN en noviembre, pero los índices de malestar ciudadano son comparables a los previos al estallido de 2019. El riesgo de un giro autoritario para concentrar poder es el factor de cola más disruptivo del escenario base.</p><div class="impl o">Las elecciones de noviembre 2026 son el próximo punto de inflexión. ADN necesita una buena performance local para fortalecer la gobernabilidad de la segunda mitad del mandato. Un resultado adverso aceleraría el riesgo político en 2027.</div></div>
+  <div class="card succ"><div class="tag g">Minería · Ventana</div><h3>Mirador, Fruta del Norte y Cascabel: la mayor oportunidad de inversión privada en 20 años</h3><p>La apertura del registro minero, el primer gobierno explícitamente pro-minería desde 2018 y los precios elevados de cobre y oro crean una ventana histórica. Ecuador tiene depósitos de clase mundial de cobre (Cascabel) y oro (Fruta del Norte). La construcción de nuevas minas está proyectada para 2026-27, con exportaciones desde 2028.</p><div class="impl g">El pipeline minero de Ecuador es la mayor oportunidad de project finance de la región después del cobre chileno. La bankabilidad depende de los contratos de estabilidad jurídica y del modelo de relacionamiento comunitario. Los multilaterales son esenciales como de-riskers.</div></div>
+  <div class="card succ"><div class="tag g">Sector financiero · Oportunidad</div><h3>Baja de tasas + crédito creciendo + dolares como moneda = ambiente idóneo para project bonds</h3><p>La tasa de préstamos cae de 10.9% (2024) a 7.8% (2026E) y la Fed recortará en 2026-27 (EIU). Ecuador emite en dólares — elimina el riesgo cambiario para inversores internacionales. El JPMorgan ya ingresó al mercado con un deal PyME. La profundización financiera tiene amplio espacio: el sector es solo 4.9% del PIB vs. 70%+ en Chile.</p><div class="impl g">La combinación de dolarización + mejora de riesgo soberano + baja de tasas crea las condiciones para una expansión del crédito productivo y project finance en Ecuador que no se veía desde los 2010s. La ventana es 2026-2028.</div></div>
+</div>
+
+<!-- FUENTES -->
+<div class="src">
+  <h4>Fuentes consultadas</h4>
+  <ul>
+    <li>EIU One-click Report: Ecuador (junio 2026)</li>
+    <li>BCE — Cuentas Nacionales / IMAEc / Sector Monetario (junio 2026)</li>
+    <li>Ministerio de Economía y Finanzas del Ecuador — Cifras fiscales 2025</li>
+    <li>FMI — Extended Fund Facility Ecuador: US$4,000M (abr 2024) + US$6,500M (jul 2025)</li>
+    <li>APOYO Consultoría — Ecuador: mayor credibilidad internacional (mayo 2026)</li>
+    <li>APOYO Consultoría — Ecuador: un repunte importante con bases aún frágiles (marzo 2026)</li>
+    <li>APOYO Consultoría — Ecuador: crecimiento sólido pero con desgaste político (enero 2026)</li>
+    <li>APOYO Consultoría — Base de datos macroeconómica Ecuador (mayo 2026)</li>
+    <li>NOAA — El Niño probabilidad 82% (mayo 2026)</li>
+    <li>Bloomberg — Ecuador segunda emisión soberana $1bn (mayo 2026)</li>
+    <li>CIEES — Aprobación presidencial Noboa 26% (mayo 2026)</li>
+    <li>Cochilco / EIU — Proyección precios cobre y petróleo 2026-2030</li>
+    <li>Gibson Dunn — Ecuador Mining Regime under President Noboa (2026)</li>
+  </ul>
+</div>
+
+</div>
+
+<div class="footer">Análisis actualizado junio 2026 · Fuentes: EIU jun'26, BCE, FMI EFF, Ministerio Finanzas, APOYO Consultoría, NOAA · <strong>Última revisión: ceasefire EE.UU.–Irán anunciado 19 jun'26</strong></div>
+
+<script>
+const B='#216686',R='#CD4F4F',G='#A6A6A6',O='#DC7528',GR='#1D7D54';
+const L7=['2024','2025','2026E','2027E','2028E','2029E','2030E'];
+const L8=['2021','2022','2023','2024','2025','2026E','2027E','2028E','2029E','2030E'];
+const L5=['2023','2024','2025','2026E','2027E'];
+const D={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false}},scales:{x:{grid:{display:false},ticks:{font:{size:11},color:'#888'}},y:{grid:{color:'#f0eeea'},ticks:{font:{size:11},color:'#888'}}}};
+function pct(v){return v+'%'} function usd(v){return '$'+v+'bn'} function kbd(v){return v+"k b/d"}
+
+// PIB
+new Chart(document.getElementById('gdpChart'),{type:'line',data:{labels:L7,datasets:[
+  {label:'Ecuador',data:[-1.9,3.7,2.3,2.4,2.4,2.8,2.5],borderColor:B,backgroundColor:'rgba(33,102,134,0.06)',fill:true,tension:.4,borderWidth:2,pointRadius:4,pointBackgroundColor:B},
+  {label:'Mundo',data:[2.8,2.7,2.4,2.8,2.7,2.8,2.8],borderColor:G,borderDash:[5,3],backgroundColor:'transparent',tension:.4,borderWidth:1.5,pointRadius:3,pointBackgroundColor:G},
+  {label:'Emergentes',data:[4.2,4.1,3.3,4.2,4.0,3.9,3.9],borderColor:O,borderDash:[2,2],backgroundColor:'transparent',tension:.4,borderWidth:1.5,pointRadius:3,pointBackgroundColor:O}
+]},options:{...D,scales:{...D.scales,y:{...D.scales.y,min:-3,max:5,ticks:{...D.scales.y.ticks,callback:pct}}}}});
+
+// BER ranking (horizontal bar — lower is better ranking)
+new Chart(document.getElementById('berChart'),{type:'bar',data:{
+  labels:['Macro (47)','Infraestr. (59)','TIC (59)','FDI (66)','Empresa (68)','General (68)','Política (68)','Lab. (73)','Impuestos (75)','Mercado (75)'],
+  datasets:[{
+    label:'Ranking /82',
+    data:[47,59,59,66,68,68,68,73,75,75],
+    backgroundColor:(c)=>{const v=c.parsed.x;return v<55?'rgba(29,125,84,0.7)':v<70?'rgba(220,117,40,0.7)':'rgba(205,79,79,0.7)'},
+    borderRadius:4
+  }]
+},options:{...D,indexAxis:'y',scales:{
+  x:{...D.scales.x,min:0,max:82,ticks:{...D.scales.x.ticks,callback:(v)=>v+'/82'}},
+  y:{...D.scales.y,grid:{display:false},ticks:{font:{size:10},color:'#888'}}
+}}});
+
+// GDP composition contributions
+new Chart(document.getElementById('gdpCompChart'),{type:'bar',data:{labels:['2024','2025','2026E','2027E'],datasets:[
+  {label:'Consumo privado',data:[-1.1,1.8,1.5,1.6],backgroundColor:'rgba(33,102,134,0.75)',borderRadius:3,stack:'a'},
+  {label:'Inversión fija',data:[-0.4,1.0,0.3,0.7],backgroundColor:'rgba(29,125,84,0.75)',borderRadius:3,stack:'a'},
+  {label:'Gob+inventarios',data:[0.1,0.0,0.2,0.2],backgroundColor:'rgba(166,166,166,0.75)',borderRadius:3,stack:'a'},
+  {label:'Bal. externa',data:[-0.6,0.9,0.3,-0.1],backgroundColor:'rgba(220,117,40,0.6)',borderRadius:3,stack:'a'}
+]},options:{...D,scales:{...D.scales,x:{...D.scales.x,stacked:true},y:{...D.scales.y,stacked:true,ticks:{...D.scales.y.ticks,callback:(v)=>v+'pp'}}}}});
+
+// Fiscal chart
+new Chart(document.getElementById('fiscalChart'),{type:'bar',data:{labels:L8,datasets:[
+  {label:'Balance fiscal',data:[-1.7,0,-3.5,-1.3,-2.9,-1.0,-1.1,-1.1,-1.4,-1.5],backgroundColor:'rgba(205,79,79,0.65)',borderRadius:3,yAxisID:'y'},
+  {label:'Deuda pública',data:[58,54.9,50.7,50.3,49.9,49.0,48.2,47.7,47.5,47.1],type:'line',borderColor:B,backgroundColor:'transparent',tension:.4,borderWidth:2,pointRadius:3,pointBackgroundColor:B,yAxisID:'y2'}
+]},options:{...D,scales:{x:{...D.scales.x},y:{...D.scales.y,min:-4.5,max:0.5,ticks:{...D.scales.y.ticks,callback:pct},title:{display:true,text:'Balance (%)',font:{size:10},color:'#888'}},y2:{position:'right',grid:{display:false},min:40,max:65,ticks:{font:{size:10},color:'#888',callback:pct},title:{display:true,text:'Deuda (%)',font:{size:10},color:'#888'}}}}});
+
+// Inflation + lending + Fed
+new Chart(document.getElementById('inflationChart'),{type:'bar',data:{labels:L7,datasets:[
+  {label:'CPI',data:[1.5,0.7,2.3,2.7,1.6,1.7,1.7],backgroundColor:'rgba(205,79,79,0.7)',borderRadius:3},
+  {label:'Préstamos',data:[10.9,8.4,7.8,7.6,7.6,7.6,7.6],type:'line',borderColor:B,backgroundColor:'transparent',tension:.4,borderWidth:2,pointRadius:4,pointBackgroundColor:B},
+  {label:'Fed',data:[4.4,3.6,3.6,3.4,3.1,3.1,3.1],type:'line',borderColor:O,borderDash:[4,3],backgroundColor:'transparent',tension:.4,borderWidth:1.5,pointRadius:3,pointBackgroundColor:O}
+]},options:{...D,scales:{...D.scales,y:{...D.scales.y,min:0,max:13,ticks:{...D.scales.y.ticks,callback:pct}}}}});
+
+// Oil production
+new Chart(document.getElementById('oilChart'),{type:'bar',data:{
+  labels:['2021','2022','2023','2024','2025','2026E','2027E','2028E','2029E','2030E'],
+  datasets:[{
+    label:'Prod. b/d',
+    data:[473,481,475,475,442,450,435,421,418,410],
+    backgroundColor:(c)=>c.dataIndex<5?'rgba(220,117,40,0.75)':'rgba(220,117,40,0.35)',
+    borderRadius:4
+  }]
+},options:{...D,scales:{...D.scales,y:{...D.scales.y,min:380,max:510,ticks:{...D.scales.y.ticks,callback:kbd}}}}});
+
+// Wages and private consumption
+new Chart(document.getElementById('wagesChart'),{type:'line',data:{labels:L5,datasets:[
+  {label:'Salario real',data:[3.6,0.7,1.5,0.5,1.0],borderColor:B,backgroundColor:'rgba(33,102,134,0.06)',fill:true,tension:.4,borderWidth:2,pointRadius:4,pointBackgroundColor:B},
+  {label:'Consumo privado',data:[3.6,-1.7,2.7,2.3,2.1],borderColor:O,borderDash:[4,3],backgroundColor:'transparent',tension:.4,borderWidth:1.5,pointRadius:3,pointBackgroundColor:O}
+]},options:{...D,scales:{...D.scales,y:{...D.scales.y,min:-3,max:5,ticks:{...D.scales.y.ticks,callback:pct}}}}});
+
+// Household expenditure
+new Chart(document.getElementById('houseChart'),{type:'bar',data:{labels:['2025','2026E','2027E'],datasets:[
+  {label:'Alimentos',data:[20.6,21.3,22.0],backgroundColor:'rgba(33,102,134,0.75)',borderRadius:3,stack:'a'},
+  {label:'Vivienda',data:[7.2,7.4,7.5],backgroundColor:'rgba(29,125,84,0.7)',borderRadius:3,stack:'a'},
+  {label:'Transporte',data:[16.1,16.7,17.2],backgroundColor:'rgba(205,79,79,0.65)',borderRadius:3,stack:'a'},
+  {label:'Salud',data:[6.0,6.1,6.2],backgroundColor:'rgba(220,117,40,0.7)',borderRadius:3,stack:'a'}
+]},options:{...D,scales:{...D.scales,x:{...D.scales.x,stacked:true},y:{...D.scales.y,stacked:true,ticks:{...D.scales.y.ticks,callback:usd}}}}});
+
+// Exports breakdown (stacked bar oil vs non-oil)
+new Chart(document.getElementById('exportsChart'),{type:'bar',data:{labels:['2024','2025','2026E','2027E','2028E','2029E','2030E'],datasets:[
+  {label:'Petróleo y derivados',data:[12.2,12.8,13.4,13.8,13.5,13.2,12.9],backgroundColor:'rgba(220,117,40,0.75)',borderRadius:3,stack:'a'},
+  {label:'No petroleras',data:[22.5,24.6,27.0,28.4,30.0,30.4,30.6],backgroundColor:'rgba(29,125,84,0.7)',borderRadius:3,stack:'a'}
+]},options:{...D,scales:{...D.scales,x:{...D.scales.x,stacked:true},y:{...D.scales.y,stacked:true,ticks:{...D.scales.y.ticks,callback:usd}}}}});
+
+// FDI
+new Chart(document.getElementById('fdiChart'),{type:'bar',data:{labels:['2021','2022','2023','2024','2025','2026E','2027E','2028E','2029E','2030E'],datasets:[{label:'FDI',data:[0.7,0.9,0.5,0.4,1.3,0.8,1.1,0.8,0.8,0.9],backgroundColor:(c)=>c.dataIndex<5?'rgba(29,125,84,0.6)':'rgba(29,125,84,0.35)',borderRadius:4}]},options:{...D,scales:{...D.scales,y:{...D.scales.y,min:0,max:1.8,ticks:{...D.scales.y.ticks,callback:usd}}}}});
+
+// Export basket donut
+new Chart(document.getElementById('sectorChart'),{type:'doughnut',data:{labels:['Petróleo (~33%)','Camarón (~22%)','Banano (~12%)','Cacao/flores (~7%)','Minería (~5%)','Enlatados (~5%)','Otros (~16%)'],datasets:[{data:[33,22,12,7,5,5,16],backgroundColor:[O,'#1D7D54',B,'#9b7ecb','#4a90b8',R,'#b0aaaa'],borderWidth:2,borderColor:'#f8f7f4',hoverOffset:6}]},options:{responsive:true,maintainAspectRatio:false,cutout:'60%',plugins:{legend:{display:false},tooltip:{callbacks:{label:(c)=>c.label}}}}});
+
+// Mining projects horizontal bar
+new Chart(document.getElementById('miningChart'),{type:'bar',data:{
+  labels:['Mirador expansion\n(ENAMI-Tongling)','Fruta del Norte\nfase 2 (Lundin)','Cascabel\n(SolGold)','San Carlos\nPanantza'],
+  datasets:[{label:'Inversión estimada US$M',data:[1200,600,2500,2800],backgroundColor:['rgba(33,102,134,0.75)','rgba(29,125,84,0.7)','rgba(220,117,40,0.7)','rgba(205,79,79,0.65)'],borderRadius:6}]
+},options:{...D,indexAxis:'y',scales:{
+  x:{...D.scales.x,ticks:{...D.scales.x.ticks,callback:(v)=>'$'+v+'M'}},
+  y:{...D.scales.y,grid:{display:false},ticks:{font:{size:10},color:'#888'}}
+}}});
+
+// Interest rates
+new Chart(document.getElementById('ratesChart'),{type:'line',data:{labels:L7,datasets:[
+  {label:'Préstamos',data:[10.9,8.4,7.8,7.6,7.6,7.6,7.6],borderColor:B,backgroundColor:'transparent',tension:.4,borderWidth:2,pointRadius:4,pointBackgroundColor:B},
+  {label:'Depósitos',data:[8.0,6.3,5.9,5.8,5.8,5.8,5.8],borderColor:GR,borderDash:[5,3],backgroundColor:'transparent',tension:.4,borderWidth:1.5,pointRadius:3,pointBackgroundColor:GR},
+  {label:'Fed',data:[4.4,3.6,3.6,3.4,3.1,3.1,3.1],borderColor:O,borderDash:[2,2],backgroundColor:'transparent',tension:.4,borderWidth:1.5,pointRadius:3,pointBackgroundColor:O}
+]},options:{...D,scales:{...D.scales,y:{...D.scales.y,min:2,max:13,ticks:{...D.scales.y.ticks,callback:pct}}}}});
+
+// Employment dual axis
+new Chart(document.getElementById('employChart'),{type:'line',data:{
+  labels:['2022','2023','2024','2025','2026E','2027E','2028E','2029E','2030E'],
+  datasets:[
+    {label:'Desempleo',data:[3.2,3.4,3.4,3.1,3.2,3.4,3.3,3.6,3.6],borderColor:R,backgroundColor:'rgba(205,79,79,0.06)',fill:true,tension:.4,borderWidth:2,pointRadius:4,pointBackgroundColor:R,yAxisID:'y'},
+    {label:'Salario real',data:[6.2,3.6,0.7,1.5,0.5,1.0,1.0,1.0,0.8],borderColor:B,borderDash:[4,3],backgroundColor:'transparent',tension:.4,borderWidth:1.5,pointRadius:3,pointBackgroundColor:B,yAxisID:'y2'}
+  ]
+},options:{...D,scales:{x:{...D.scales.x},y:{...D.scales.y,min:2,max:5.5,ticks:{...D.scales.y.ticks,callback:pct},title:{display:true,text:'Desempleo',font:{size:10},color:'#888'}},y2:{position:'right',grid:{display:false},min:-1,max:8,ticks:{font:{size:10},color:'#888',callback:pct},title:{display:true,text:'Sal. real',font:{size:10},color:'#888'}}}}});
+</script>
+</body>
+</html>
