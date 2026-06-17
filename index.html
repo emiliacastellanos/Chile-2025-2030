@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perspectiva Macroeconómica LATAM 2026–2027</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --dark:    #0f1923;
+  --navy:    #162232;
+  --blue:    #216686;
+  --sky:     #4a9bbe;
+  --gold:    #c9973a;
+  --cream:   #f5f2ed;
+  --text:    #1e2a35;
+  --light:   #6b7a8a;
+  --border:  #ddd8d0;
+  --white:   #ffffff;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--dark);
+  color: var(--white);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  padding: 4rem 2rem 3rem;
+  text-align: center;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(33,102,134,0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 20% 80%, rgba(201,151,58,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* subtle grid lines */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+.hero-inner { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; }
+
+.eyebrow {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--sky);
+  margin-bottom: 1.25rem;
+  padding: 4px 12px;
+  border: 1px solid rgba(74,155,190,0.3);
+  border-radius: 20px;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+  color: var(--white);
+}
+
+.hero h1 em {
+  font-style: normal;
+  color: var(--sky);
+}
+
+.hero-sub {
+  font-size: 15px;
+  color: rgba(255,255,255,0.5);
+  max-width: 480px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.7;
+}
+
+.hero-meta {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+.meta-item .ml { font-size: 9px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+.meta-item .mv { font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.7); }
+
+/* ── DIVIDER ── */
+.divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+  margin: 0;
+}
+
+/* ── CARDS SECTION ── */
+.cards-section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3rem 2rem 4rem;
+}
+
+.section-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 1.25rem;
+}
+
+/* ── COUNTRY CARD ── */
+.country-card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none;
+  display: block;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  border: 1px solid rgba(255,255,255,0.07);
+}
+.country-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+}
+
+.card-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.4s ease;
+}
+.country-card:hover .card-bg { transform: scale(1.04); }
+
+.card-overlay {
+  position: absolute;
+  inset: 0;
+}
+
+.card-content {
+  position: relative;
+  z-index: 2;
+  padding: 1.75rem 1.75rem 1.5rem;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-top { display: flex; justify-content: space-between; align-items: flex-start; }
+
+.card-flag {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.card-status {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+.status-live { background: rgba(29,125,84,0.3); color: #6ee8a8; border: 1px solid rgba(29,125,84,0.4); }
+.status-soon { background: rgba(201,151,58,0.2); color: #f0c97a; border: 1px solid rgba(201,151,58,0.3); }
+
+.card-bottom {}
+
+.card-country {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 0.3rem;
+  line-height: 1.1;
+}
+
+.card-desc {
+  font-size: 12.5px;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 1.1rem;
+  line-height: 1.5;
+}
+
+.card-stats {
+  display: flex;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.stat { display: flex; flex-direction: column; gap: 1px; }
+.stat-val { font-size: 15px; font-weight: 700; color: white; }
+.stat-lbl { font-size: 9.5px; font-weight: 500; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.5px; }
+
+.card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+  padding: 7px 16px;
+  border-radius: 8px;
+  transition: background 0.15s;
+}
+.card-cta svg { width: 14px; height: 14px; transition: transform 0.15s; }
+.country-card:hover .card-cta svg { transform: translateX(3px); }
+
+/* Chile card */
+.chile-bg {
+  background: linear-gradient(135deg, #0d2535 0%, #1a3d55 50%, #0d3328 100%);
+}
+.chile-overlay {
+  background: linear-gradient(160deg, rgba(13,37,53,0.2) 0%, rgba(13,37,53,0.75) 100%);
+}
+.chile-cta { background: rgba(33,102,134,0.5); }
+.chile-cta:hover { background: rgba(33,102,134,0.8); }
+
+/* Ecuador card */
+.ecuador-bg {
+  background: linear-gradient(135deg, #1a2810 0%, #2d4a1a 50%, #3d2810 100%);
+}
+.ecuador-overlay {
+  background: linear-gradient(160deg, rgba(26,40,16,0.2) 0%, rgba(26,40,16,0.8) 100%);
+}
+.ecuador-cta { background: rgba(201,151,58,0.4); }
+.ecuador-cta:hover { background: rgba(201,151,58,0.7); }
+
+/* ── COMING SOON CARD ── */
+.card-locked .card-content { opacity: 0.85; }
+.card-locked { cursor: default; }
+.card-locked:hover { transform: none; box-shadow: none; }
+
+/* ── FOOTER ── */
+.footer {
+  text-align: center;
+  padding: 2rem;
+  font-size: 11px;
+  color: rgba(255,255,255,0.2);
+  letter-spacing: 0.5px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 600px) {
+  .hero { padding: 3rem 1.5rem 2rem; }
+  .cards-section { padding: 2rem 1.25rem 3rem; }
+  .cards-grid { grid-template-columns: 1fr; }
+  .hero-meta { gap: 1.25rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">Análisis Macroeconómico · 2026–2027</span>
+    <h1>Perspectiva<br><em>LATAM</em></h1>
+    <p class="hero-sub">Análisis del entorno político, económico y financiero de los principales mercados de América Latina para el período 2026–2027.</p>
+    <div class="hero-meta">
+      <div class="meta-item">
+        <span class="ml">Fuente primaria</span>
+        <span class="mv">EIU · BCCh · Hacienda</span>
+      </div>
+      <div class="meta-item">
+        <span class="ml">Actualizado</span>
+        <span class="mv">Junio 2026</span>
+      </div>
+      <div class="meta-item">
+        <span class="ml">Países</span>
+        <span class="mv">2 disponibles</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CARDS -->
+<div class="cards-section">
+  <div class="section-label">Selecciona un país</div>
+
+  <div class="cards-grid">
+
+    <!-- CHILE -->
+    <a href="chile.html" class="country-card">
+      <div class="card-bg chile-bg"></div>
+      <div class="card-overlay chile-overlay"></div>
+      <div class="card-content">
+        <div class="card-top">
+          <span class="card-flag">🇨🇱</span>
+          <span class="card-status status-live">Disponible</span>
+        </div>
+        <div class="card-bottom">
+          <div class="card-country">Chile</div>
+          <div class="card-desc">Gobierno Kast · Pipeline minero US$87bn · Cobre en récord histórico · Ajuste fiscal 2026</div>
+          <div class="card-stats">
+            <div class="stat">
+              <span class="stat-val">1.4%</span>
+              <span class="stat-lbl">PIB 2026E</span>
+            </div>
+            <div class="stat">
+              <span class="stat-val">3.7%</span>
+              <span class="stat-lbl">Inflación</span>
+            </div>
+            <div class="stat">
+              <span class="stat-val">$22bn</span>
+              <span class="stat-lbl">FDI 2026E</span>
+            </div>
+          </div>
+          <span class="card-cta chile-cta">
+            Ver análisis completo
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </span>
+        </div>
+      </div>
+    </a>
+
+    <!-- ECUADOR -->
+    <div class="country-card card-locked">
+      <div class="card-bg ecuador-bg"></div>
+      <div class="card-overlay ecuador-overlay"></div>
+      <div class="card-content">
+        <div class="card-top">
+          <span class="card-flag">🇪🇨</span>
+          <span class="card-status status-soon">Próximamente</span>
+        </div>
+        <div class="card-bottom">
+          <div class="card-country">Ecuador</div>
+          <div class="card-desc">Gobierno Noboa · Sector petrolero · Dolarización · Seguridad y crimen organizado</div>
+          <div class="card-stats">
+            <div class="stat">
+              <span class="stat-val">—</span>
+              <span class="stat-lbl">PIB 2026E</span>
+            </div>
+            <div class="stat">
+              <span class="stat-val">—</span>
+              <span class="stat-lbl">Inflación</span>
+            </div>
+            <div class="stat">
+              <span class="stat-val">—</span>
+              <span class="stat-lbl">FDI 2026E</span>
+            </div>
+          </div>
+          <span class="card-cta ecuador-cta" style="opacity:0.5;cursor:default">
+            En preparación
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3v10M3 8h10"/></svg>
+          </span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="footer">
+  Análisis elaborado en junio 2026 · Fuentes: EIU, BCCh, CMF, Hacienda, Bloomberg, Cochilco, CBC
+</div>
+
+</body>
+</html>
