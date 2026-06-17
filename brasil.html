@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brasil 2026–2027 | Perspectiva Macroeconómica y Financiera</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--blue:#216686;--red:#CD4F4F;--gray:#A6A6A6;--orange:#DC7528;--green:#1D7D54;--dark:#1a1a2e;--text:#1e1e2e;--light:#5a5a72;--bg:#f8f7f4;--white:#ffffff;--border:#e2e0da}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:15px}
+.header{background:var(--dark);color:white;padding:2.5rem 3rem;position:relative;overflow:hidden}
+.header::before{content:'';position:absolute;top:-60px;right:-80px;width:300px;height:300px;border-radius:50%;border:2px solid rgba(29,125,84,0.3)}
+.header-eyebrow{font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:.75rem}
+.header h1{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:700;line-height:1.15;margin-bottom:.5rem}
+.header h1 span{color:#7dd3b0}
+.header-sub{font-size:14px;color:rgba(255,255,255,0.55);max-width:560px;margin-top:.5rem}
+.header-meta{display:flex;gap:2rem;margin-top:2rem;flex-wrap:wrap}
+.header-meta-item{display:flex;flex-direction:column;gap:3px}
+.header-meta-item .label{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.35)}
+.header-meta-item .value{font-size:13px;font-weight:500;color:rgba(255,255,255,0.85)}
+.container{max-width:1100px;margin:0 auto;padding:2.5rem 2rem}
+.sec-hdr{display:flex;align-items:center;gap:12px;margin-bottom:1.5rem;margin-top:2.5rem}
+.sec-num{width:32px;height:32px;border-radius:50%;background:var(--green);color:white;font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-title{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:600;color:var(--text)}
+.sec-line{flex:1;height:1px;background:var(--border)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1rem;margin-bottom:1.5rem}
+.card{background:var(--white);border-radius:12px;border:1px solid var(--border);padding:1.25rem 1.5rem}
+.card.bl{border-left:4px solid var(--blue)}.card.gr{border-left:4px solid var(--green)}.card.or{border-left:4px solid var(--orange)}.card.re{border-left:4px solid var(--red)}
+.card.warn{background:#fff9f0;border-color:#f4c97a;border-left:4px solid var(--orange)}
+.card.succ{background:#f0f9f5;border-color:#7dd3b0;border-left:4px solid var(--green)}
+.card.risk{background:#fff5f5;border-color:#f5b8b8;border-left:4px solid var(--red)}
+.tag{display:inline-block;font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:4px;margin-bottom:.75rem;background:rgba(29,125,84,0.1);color:var(--green)}
+.tag.r{background:rgba(205,79,79,0.1);color:var(--red)}.tag.g{background:rgba(29,125,84,0.1);color:var(--green)}.tag.o{background:rgba(220,117,40,0.1);color:var(--orange)}.tag.b{background:rgba(33,102,134,0.1);color:var(--blue)}
+.card h3{font-size:15px;font-weight:600;margin-bottom:.5rem;color:var(--text);line-height:1.3}
+.card p{font-size:13.5px;color:var(--light);line-height:1.6;margin-bottom:.75rem}
+.impl{border-radius:6px;padding:.65rem .85rem;font-size:12.5px;font-weight:500;line-height:1.5;background:rgba(29,125,84,0.06);color:var(--green)}
+.impl::before{content:'→ Lectura: ';font-weight:700}
+.impl.r{background:rgba(205,79,79,0.06);color:var(--red)}.impl.g{background:rgba(29,125,84,0.06);color:var(--green)}.impl.o{background:rgba(220,117,40,0.06);color:var(--orange)}.impl.b{background:rgba(33,102,134,0.06);color:var(--blue)}
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.75rem;margin-bottom:1.5rem}
+.kpi{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:1rem 1.1rem;text-align:center}
+.kpi .kl{font-size:10.5px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;color:var(--light);margin-bottom:.4rem}
+.kpi .kv{font-size:1.75rem;font-weight:700;font-family:'Playfair Display',serif;color:var(--green);line-height:1}
+.kpi .ks{font-size:11px;color:var(--light);margin-top:.25rem}
+.kpi.r .kv{color:var(--red)}.kpi.g .kv{color:var(--green)}.kpi.o .kv{color:var(--orange)}.kpi.b .kv{color:var(--blue)}
+.cw{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:1.25rem}
+.ct{font-size:13px;font-weight:600;color:var(--green);text-transform:uppercase;letter-spacing:.8px;margin-bottom:.25rem}
+.cs{font-size:12px;color:var(--light);margin-bottom:1.25rem}
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem}
+.leg{display:flex;flex-wrap:wrap;gap:1rem;margin-bottom:1rem;font-size:12px;color:var(--light)}
+.leg-i{display:flex;align-items:center;gap:5px}
+.dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+.rtable{width:100%;border-collapse:collapse;font-size:13px;background:var(--white);border-radius:12px;overflow:hidden;border:1px solid var(--border);margin-bottom:1.5rem}
+.rtable thead th{background:var(--dark);color:rgba(255,255,255,0.8);font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:.75rem 1rem;text-align:left}
+.rtable tbody tr{border-bottom:1px solid var(--border)}
+.rtable tbody tr:last-child{border-bottom:none}
+.rtable tbody td{padding:.85rem 1rem;vertical-align:top;color:var(--light);font-size:13px}
+.rtable tbody td:first-child{font-weight:500;color:var(--text)}
+.pill{display:inline-block;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:600}
+.ph{background:rgba(205,79,79,0.12);color:var(--red)}.pm{background:rgba(220,117,40,0.12);color:var(--orange)}.pl{background:rgba(29,125,84,0.12);color:var(--green)}.pvh{background:rgba(205,79,79,0.2);color:#a03030;font-weight:700}
+.callout{background:linear-gradient(135deg,#0a2a12 0%,var(--dark) 100%);border-radius:12px;padding:1.5rem 2rem;color:white;margin:1.5rem 0;border-left:5px solid var(--green)}
+.callout h4{font-family:'Playfair Display',serif;font-size:1.05rem;margin-bottom:.5rem;color:#7dd3b0}
+.callout p{font-size:13.5px;color:rgba(255,255,255,0.7);line-height:1.65}
+.dark-box{background:var(--dark);border-radius:14px;padding:2rem 2.5rem;margin-bottom:1.5rem;position:relative;overflow:hidden}
+.dark-box p.ey{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:1rem}
+.dark-box p.lead{font-family:'Playfair Display',serif;font-size:1.2rem;color:#7dd3b0;line-height:1.5;margin-bottom:.75rem}
+.dark-box p.body{font-size:13.5px;color:rgba(255,255,255,0.6);line-height:1.7}
+.src{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:1.2rem 1.5rem;margin-top:2.5rem}
+.src h4{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--light);margin-bottom:.75rem}
+.src ul{list-style:none;display:flex;flex-wrap:wrap;gap:.5rem 1.5rem}
+.src li{font-size:12px;color:var(--light)}
+.src li::before{content:'— ';color:var(--green)}
+.footer{background:var(--dark);color:rgba(255,255,255,0.4);text-align:center;font-size:11px;padding:1.5rem;margin-top:3rem;letter-spacing:.5px}
+.footer strong{color:rgba(255,255,255,0.7)}
+.timeline{display:flex;flex-direction:column;gap:0;background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:1.5rem}
+.tl-row{display:grid;grid-template-columns:200px 110px 1fr 200px;border-bottom:1px solid var(--border);font-size:13px}
+.tl-row:last-child{border-bottom:none}
+.tl-row.hdr{background:#f4f3ef;font-size:10.5px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;color:var(--light)}
+.tl-cell{padding:.8rem 1rem;border-right:1px solid var(--border);color:var(--light)}
+.tl-cell:last-child{border-right:none}
+.tl-cell strong{color:var(--text);font-weight:600;display:block;margin-bottom:2px}
+.prog-bar{height:6px;border-radius:3px;background:#eee;margin-top:6px}
+.prog-fill{height:100%;border-radius:3px}
+.update-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:2px 7px;border-radius:4px;background:rgba(29,125,84,0.15);color:var(--green);margin-left:6px;vertical-align:middle}
+@media(max-width:680px){.cgrid{grid-template-columns:1fr}.header{padding:2rem 1.5rem}.header h1{font-size:1.8rem}.tl-row{grid-template-columns:1fr}.tl-cell{border-right:none;border-bottom:1px solid var(--border)}.tl-cell:last-child{border-bottom:none}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div style="position:relative;z-index:1">
+    <div class="header-eyebrow">Análisis de Contexto País · Junio 2026</div>
+    <h1>Brasil <span>2026–2027</span><br>Perspectiva Macro y Financiera</h1>
+    <p class="header-sub">Análisis del entorno político, económico y financiero de Brasil para el período 2026–2027. Cubre macro, inflación, política monetaria y fiscal, sector externo, inversión y sistema financiero.</p>
+    <div class="header-meta">
+      <div class="header-meta-item"><span class="label">Fecha</span><span class="value">Junio 2026</span></div>
+      <div class="header-meta-item"><span class="label">Fuente primaria</span><span class="value">EIU One-click Report · Brasil · Junio 2026</span></div>
+      <div class="header-meta-item"><span class="label">Fuente complementaria</span><span class="value">BCB — Relatório de Política Monetária 1T2026 (mar/2026)</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- KPI RESUMEN -->
+<div class="kpi-row" style="margin-top:2rem">
+  <div class="kpi g"><div class="kl">PIB real 2025</div><div class="kv">2.3%</div><div class="ks">Cierre sólido · IBGE/BCB</div></div>
+  <div class="kpi o"><div class="kl">PIB real 2026E</div><div class="kv">2.0%</div><div class="ks">EIU jun'26 · BCB: 1.6%</div></div>
+  <div class="kpi r"><div class="kl">PIB real 2027E</div><div class="kv">1.8%</div><div class="ks">EIU — desaceleración</div></div>
+  <div class="kpi r"><div class="kl">IPCA 2026E</div><div class="kv">4.7%</div><div class="ks">EIU avg · meta BCB: 3.0%</div></div>
+  <div class="kpi r"><div class="kl">Selic actual</div><div class="kv">14.75%</div><div class="ks">BCB mar'26 · EIU fin'26: 14.0%</div></div>
+  <div class="kpi o"><div class="kl">Prod. petróleo 2026E</div><div class="kv">4.38M</div><div class="ks">b/d · EIU — máximo histórico</div></div>
+  <div class="kpi g"><div class="kl">IED inflows 2026E</div><div class="kv">US$93bn</div><div class="ks">+19% vs 2025 · EIU</div></div>
+  <div class="kpi r"><div class="kl">Deuda pública 2026E</div><div class="kv">80.1%</div><div class="ks">del PIB · EIU — trayectoria al alza</div></div>
+</div>
+
+<!-- SEC 1: PANORAMA 2025 -->
+<div class="sec-hdr"><div class="sec-num">1</div><div class="sec-title">Panorama 2025: Cuarto Año Positivo, Pero la Inflación No Cede</div><div class="sec-line"></div></div>
+
+<div class="callout">
+  <h4>El PIB creció 2.3% en 2025 — el cuarto año consecutivo de expansión — pero el IPCA cerró en 4.26%, 1.26 p.p. por encima de la meta</h4>
+  <p>La agropecuaria lideró el crecimiento (+11.7%), mientras los segmentos más cíclicos de la economía desaceleraron. El mercado laboral alcanzó un mínimo histórico en la tasa de desocupación. Sin embargo, los núcleos de inflación se mantuvieron persistentemente elevados, principalmente por inflación de servicios (~6% anual), expectativas desancoradas y la inercia del año anterior. La Selic fue elevada hasta 15% en junio de 2025. Fuentes: BCB RPM mar/2026; EIU jun/2026.</p>
+</div>
+
+<div class="cgrid">
+  <div class="cw">
+    <div class="ct">PIB real Brasil vs. región y mundo</div>
+    <div class="cs">% de variación anual (2024–2030E) · EIU junio 2026</div>
+    <div class="leg">
+      <span class="leg-i"><span class="dot" style="background:#1D7D54"></span>Brasil</span>
+      <span class="leg-i"><span class="dot" style="background:#A6A6A6"></span>Mundo</span>
+      <span class="leg-i"><span class="dot" style="background:#DC7528"></span>Emergentes</span>
+    </div>
+    <div style="position:relative;height:220px"><canvas id="gdpChart"></canvas></div>
+  </div>
+  <div class="cw">
+    <div class="ct">Sistema financiero: cartera de crédito total</div>
+    <div class="cs">US$ miles de millones (2024–2030E) · EIU / IMF</div>
+    <div class="leg">
+      <span class="leg-i"><span class="dot" style="background:#216686"></span>Préstamos LP</span>
+      <span class="leg-i"><span class="dot" style="background:#DC7528"></span>Préstamos CP</span>
+    </div>
+    <div style="position:relative;height:220px"><canvas id="creditChart"></canvas></div>
+  </div>
+</div>
+
+<div class="grid">
+  <div class="card succ">
+    <div class="tag g">Agropecuaria</div>
+    <h3>Agropecuaria +11.7% en 2025: el gran motor del año</h3>
+    <p>En el detalle sectorial, las fuertes expansiones de la agropecuaria y de la industria extractiva fueron los principales diferenciadores en 2025, según el BCB (RPM mar/2026 y IBGE). El índice de la agropecuaria cerró en +11.7% interanual, impulsado por una cosecha récord. La desaceleración fue más intensa en los segmentos más cíclicos (industria: +1.4%, servicios: +1.8%), mientras los menos sensibles al ciclo aceleraron.</p>
+    <div class="impl g">Brasil tiene una base exportadora agrícola muy profunda que actúa como amortiguador macroeconómico. La dependencia del agro introduce volatilidad interanual que puede distorsionar la lectura del ciclo.</div>
+  </div>
+  <div class="card succ">
+    <div class="tag g">Mercado de trabajo</div>
+    <h3>Desocupación en mínimo histórico; salarios reales en alza</h3>
+    <p>El BCB (RPM mar/2026) reporta que el mercado de trabajo sigue caliente: la tasa de desocupación alcanzó un nuevo mínimo histórico, con retoma del crecimiento de la población ocupada en el último trimestre de 2025. La generación de empleos formales continúa robusta, aunque en desaceleración. El rendimiento medio real del trabajo medido por la PNAD Contínua sigue creciendo fuertemente, incluso acelerando respecto a la tendencia del primer semestre de 2025.</p>
+    <div class="impl g">Mercado laboral apretado genera presión sobre la inflación de servicios vía salarios — limitando el espacio para cortes de Selic y sosteniendo el consumo de corto plazo.</div>
+  </div>
+  <div class="card warn">
+    <div class="tag o">Inflación</div>
+    <h3>IPCA 4.26% en 2025: dentro del intervalo, pero por encima de la meta</h3>
+    <p>La inflación de 2025 fue 4.26%, 1.26 p.p. sobre la meta de 3.0% y dentro del intervalo CMN de 1.5%–4.5% (BCB RPM). El principal factor al alza fue la inercia del año anterior (+1.13 p.p.) y las expectativas de inflación (+0.69 p.p.). La inflación de servicios se mantuvo en torno a 6.0% anual a lo largo de 2025. Los núcleos de inflación evolucionaron de forma menos favorable que el IPCA agregado.</p>
+    <div class="impl o">Inflación estructuralmente por encima de la meta desde 2021. El costo del crédito en Brasil refleja esta prima — las tasas activas del sistema financiero rondan el 46% a.a. en 2026E.</div>
+  </div>
+</div>
+
+<!-- SEC 2: MODERACIÓN 2026 -->
+<div class="sec-hdr"><div class="sec-num">2</div><div class="sec-title">El 2026: Expansión Pre-Electoral con Vientos en Contra</div><div class="sec-line"></div></div>
+
+<div class="cgrid">
+  <div class="cw">
+    <div class="ct">Descomposición del crecimiento del PIB</div>
+    <div class="cs">Contribución en puntos porcentuales (2025–2027E) · EIU junio 2026</div>
+    <div class="leg">
+      <span class="leg-i"><span class="dot" style="background:#216686"></span>Consumo privado</span>
+      <span class="leg-i"><span class="dot" style="background:#1D7D54"></span>Inversión fija</span>
+      <span class="leg-i"><span class="dot" style="background:#A6A6A6"></span>Gob. + exist.</span>
+      <span class="leg-i"><span class="dot" style="background:#DC7528"></span>Balanza externa</span>
+    </div>
+    <div style="position:relative;height:230px"><canvas id="gdpCompChart"></canvas></div>
+  </div>
+  <div class="cw">
+    <div class="ct">VAB por sector de origen</div>
+    <div class="cs">Variación % real anual (2023–2026E) · BCB RPM 1T2026 / IBGE / EIU</div>
+    <div class="leg">
+      <span class="leg-i"><span class="dot" style="background:#1D7D54"></span>Agropecuaria</span>
+      <span class="leg-i"><span class="dot" style="background:#216686"></span>Industria</span>
+      <span class="leg-i"><span class="dot" style="background:#DC7528"></span>Servicios</span>
+    </div>
+    <div style="position:relative;height:230px"><canvas id="sectorVabChart"></canvas></div>
+  </div>
+</div>
+
+<div class="grid">
+  <div class="card warn">
+    <div class="tag o">Impulso electoral</div>
+    <h3>Política fiscal expansiva de Lula impulsa el Q1 2026 por encima de lo esperado</h3>
+    <p>El PIB rebotó +1.1% en términos secuenciales en el primer trimestre de 2026, el mayor registro desde inicios de 2025, impulsado principalmente por medidas pre-electorales de la administración Lula: exenciones de IRPF para salarios hasta R$5,000, crédito subsidiado, gas gratuito para hogares de bajos ingresos, subsidios a combustibles y electricidad, y aumentos del salario mínimo. Estas medidas totalizan ~R$227bn (1.7% del PIB) en estímulo fiscal, según el EIU (jun/2026).</p>
+    <div class="impl o">El impulso fiscal es transitorio y pre-electoral; el EIU espera que el resto del año sea más débil. Los riesgos de fiscalizar este ritmo de gasto son elevados.</div>
+  </div>
+  <div class="card bl">
+    <div class="tag b">Exportaciones</div>
+    <h3>Exportaciones aceleran: oil exporter neto se beneficia del conflicto en Oriente Medio</h3>
+    <p>Las exportaciones de bienes crecieron 6.2% en 2025 y se proyectan en US$400bn para 2026E (+14.1% vs 2025), apuntaladas por el alza de precios del petróleo y el ciclo agrícola (EIU jun/2026). Brasil es exportador neto de energía y capitaliza la volatilidad de los mercados globales de commodities, a diferencia de la mayoría de sus pares emergentes. El superávit comercial proyectado para 2026 es de US$79bn (EIU).</p>
+    <div class="impl b">El shock iraní tiene un impacto macroeconómico neto positivo para Brasil por su posición exportadora de petróleo — en contraste con Ecuador o Chile que son importadores netos de energía.</div>
+  </div>
+  <div class="card risk">
+    <div class="tag r">Divergencia de proyecciones</div>
+    <h3>BCB (1.6%) vs EIU (2.0%): la distancia refleja el timing del rebote Q1</h3>
+    <p>La proyección del BCB para 2026 se mantuvo en 1.6% (RPM mar/2026), elaborada con datos de corte de marzo. El EIU revisó al alza a 2.0% en junio tras el fuerte Q1 (+ 1.1% t/t), pero redujo 2027 de 2.1% a 1.8% para reflejar el menor efecto de arrastre. Ambas fuentes coinciden en que los efectos del impulso fiscal se disiparán a lo largo del año y que los juros altos pesarán sobre la inversión.</p>
+    <div class="impl r">Para análisis de mediano plazo, el consenso (1.8–2.0%) sugiere un Brasil con crecimiento moderado y estructuralmente limitado por baja productividad laboral (0.6% a.a. 2019–2025 según BCB) y alto costo del crédito.</div>
+  </div>
+</div>
+
+<!-- SEC 3: INFLACIÓN Y POLÍTICA MONETARIA -->
+<div class="sec-hdr"><div class="sec-num">3</div><div class="sec-title">Inflación y Política Monetaria: Expectativas Desancoradas, Selic Restrictiva</div><div class="sec-line"></div></div>
+
+<div class="cgrid">
+  <div class="cw">
+    <div class="ct">IPCA y tasa de referencia Selic</div>
+    <div class="cs">% anual (2024–2030E) · EIU junio 2026 / BCB RPM</div>
+    <div class="leg">
+      <span class="leg-i"><span class="dot" style="background:#CD4F4F"></span>IPCA</span>
+      <span class="leg-i"><span class="dot" style="background:#216686"></span>Selic (tasa corta av)</span>
+    </div>
+    <div style="position:relative;height:220px"><canvas id="inflationChart"></canvas></div>
+  </div>
+  <div class="cw">
+    <div class="ct">Desempleo y salario real</div>
+    <div class="cs">% (2022–2030E) · EIU junio 2026 / BCB / IBGE</div>
+    <div class="leg">
+      <span class="leg-i"><span class="dot" style="background:#CD4F4F"></span>Desocupación</span>
+      <span class="leg-i"><span class="dot" style="background:#216686"></span>Salario real (der.)</span>
+    </div>
+    <div style="position:relative;height:220px"><canvas id="employChart"></canvas></div>
+  </div>
+</div>
+
+<div class="grid">
+  <div class="card risk">
+    <div class="tag r">Expectativas</div>
+    <h3>Expectativas desancoradas: Focus apunta a 4.1% para 2026 y 3.8% para 2027</h3>
+    <p>Las expectativas de inflación del Focus permaneceentre acima da meta en todo el horizonte de proyección del BCB (RPM mar/2026). Para 2026: 4.1%; para 2027: 3.8% — ambas por encima de la meta de 3.0% y de los límites de tolerancia históricos. La proyección del Copom para el tercer trimestre de 2027 (horizonte relevante de política) se ubica en 3.3%. El EIU espera que el IPCA termine 2026 en 5.5% y baje a 4.2% en 2027, impulsado por El Niño y la presión de la guerra iraní en energía.</p>
+    <div class="impl r">El anclaje de expectativas es la principal condición para el inicio de una relajación monetaria sostenida. Hoy ese anclaje no existe — lo que acota el espacio para recortes de Selic en 2026.</div>
+  </div>
+  <div class="card warn">
+    <div class="tag o">Política monetaria</div>
+    <h3>BCB inicia recortes en marzo 2026, pero el ritmo será gradual y cauteloso</h3>
+    <p>Tras elevar la Selic hasta 15% en junio de 2025, el BCB realizó el primer recorte en marzo de 2026 (-25 pb, a 14.75%). El EIU (jun/2026) espera la Selic en 14.0% al cierre de 2026 y 12.0% al cierre de 2027, revisando al alza desde 13.0% y 11.0% previos ante la mayor resiliencia inflacionaria. La tasa real neutral se estima en 5.0%-5.5% (EIU), lo que implica que incluso en 12%, la política monetaria seguirá siendo restrictiva.</p>
+    <div class="impl o">La transmisión de la Selic al crédito es parcial: el BCB (boxe RPM) corrobora que solo los préstamos de largo plazo reaccionan de forma significativa. Las modalidades emergenciales (tarjeta rotativa, cheque especial) siguen en niveles de 60%+ a.a.</div>
+  </div>
+  <div class="card warn">
+    <div class="tag o">El Niño · Riesgo al alza</div>
+    <h3>El Niño esperado para 2026–2027: presión adicional sobre precios de alimentos y energía</h3>
+    <p>El EIU (jun/2026) incorpora en sus proyecciones de inflación el inicio de condiciones de El Niño, esperadas por la NOAA para pronto, con duración hasta inicios de 2027. Un El Niño severo traería sequía al norte y centro-oeste de Brasil e inundaciones en el sur, afectando la producción agrícola y los precios de energía eléctrica (la generación hidráulica cubre ~55% de la matriz, según EIU). El EIU elevó la proyección de IPCA 2026 fin de año de 5.1% a 5.5% incorporando estos efectos iniciales.</p>
+    <div class="impl r">El Niño es un riesgo bidireccional: deteriora precios de alimentos (factor alcista para inflación) y puede interrumpir producción agrícola (impacto negativo sobre crecimiento).</div>
+  </div>
+</div>
+
+<!-- SEC 4: PETRÓLEO Y COMMODITIES -->
+<div class="sec-hdr"><div class="sec-num">4</div><div class="sec-title">Petróleo, Pré-sal y Minerais Críticos: El Motor Estructural</div><div class="sec-line"></div></div>
+
+<div class="callout">
+  <h4>Brasil produce 4.38 millones de b/d en 2026E — un máximo histórico — y es exportador neto de energía en un mundo en conflicto</h4>
+  <p>El conflicto en Oriente Medio tiene para Brasil un impacto macroeconómico neto positivo a través de mejora en los términos de intercambio, a diferencia de la mayoría de los países emergentes. La producción de petróleo cruda y LNG alcanzará 4.38M b/d en 2026E y se estabilizará en 4.6M b/d desde 2027, impulsada por las reservas del pré-sal donde grandes yacimientos se encuentran bajo gruesas capas de sal en el fondo marino. Petrobras es el vehículo central. A esto se suman las vasas reservas de minerales críticos — Brazil tiene las segundas mayores reservas mundiales de tierras raras y grafito (EIU jun/2026).</p>
+</div>
+
+<div class="cgrid">
+  <div class="cw">
+    <div class="ct">Producción de petróleo crudo y gas natural líquido</div>
+    <div class="cs">Miles de b/d (2021–2030E) · EIU junio 2026</div>
+    <div class="leg"><span class="leg-i"><span class="dot" style="background:#1D7D54"></span>Producción b/d (miles)</span></div>
+    <div style="position:relative;height:210px"><canvas id="oilChart"></canvas></div>
+  </div>
+  <div class="cw">
+    <div class="ct">Inversión extranjera directa — flujos inward</div>
+    <div class="cs">US$ miles de millones (2021–2030E) · EIU junio 2026</div>
+    <div class="leg"><span class="leg-i"><span class="dot" style="background:#1D7D54"></span>IED inflows</span></div>
+    <div style="position:relative;height:210px"><canvas id="fdiChart"></canvas></div>
+  </div>
+</div>
+
+<div class="grid">
+  <div class="card gr">
+    <div class="tag g">Pré-sal · Petrobras</div>
+    <h3>Producción asciende a 4.6M b/d hasta 2030 — el mayor programa de expansión de LatAm</h3>
+    <p>El EIU proyecta producción de petróleo y gas natural líquido creciente desde 3.76M b/d (2025) a 4.38M b/d (2026E), estabilizándose en 4.6M b/d a partir de 2027. Petrobras conduce las operaciones en las cuencas del pré-sal (Santos, Campos, Espírito Santo). El Programa de Aceleração do Crescimento (PAC) contempla inversiones de R$1.7trn (~US$340bn, 17% del PIB) hasta 2030, con foco en transporte, energía y educación (EIU). La capacidad de Petrobras de sostener este pipeline depende de la gobernanza bajo la administración Lula.</p>
+    <div class="impl g">La posición exportadora neta y el crecimiento de producción hacen de Brasil un actor cada vez más relevante en la cadena energética global, con implicancias positivas para el perfil de crédito soberano y la cuenta corriente.</div>
+  </div>
+  <div class="card gr">
+    <div class="tag g">Minerais críticos</div>
+    <h3>Brasil: 2ª reserva mundial de tierras raras (23.1%) y grafito (26.4%)</h3>
+    <p>Según el EIU (jun/2026) y el USGS, Brasil posee las segundas mayores reservas mundiales de tierras raras (23.1% del total global) y grafito (26.4%); el tercer puesto en níquel (11.8%), y también reservas relevantes de cobalto, litio y cobre. En 2026, USA Rare Earth —empresa crítico-mineral estadounidense— está a punto de completar la adquisición de US$2.8bn de Serra Verde (empresa brasileña de tierras raras), buscando reducir dependencia de suministros dominados por China. El EIU identifica esto como un área de colaboración bilateral incluso en contexto de tensión diplomática.</p>
+    <div class="impl g">Oportunidades directas para financiamiento de proyectos mineros de minerales críticos. La cadena de valor (extracción → procesamiento → exportación) presenta déficit estructural de capital.</div>
+  </div>
+  <div class="card bl">
+    <div class="tag b">Energía renovable</div>
+    <h3>Hidrología domina (55%), pero el viento y el solar son las áreas de crecimiento</h3>
+    <p>La generación hidroeléctrica cubre ~55% de la matriz eléctrica de Brasil. La capacidad eólica posiciona al país como quinto productor mundial; su participación en la generación pasará de 15% (2024) a 20% en 2034E (EIU). El biocombustible —principalmente etanol de caña— cubre 30% de la demanda de transporte vía vehículos flex-fuel. El gobierno Lula impulsa la electrificación del transporte, lo que presionará la demanda de energía eléctrica +2% a.a. hasta 2034. Los 30% de combustibles fósiles se mantendrán estables en la matriz, dado el rol estratégico del petróleo para la balanza.</p>
+    <div class="impl b">Los proyectos de energía renovable y almacenamiento (BESS) en Brasil tienen perfil bancable para estructuras de project finance con respaldo de multilaterales, dado el marco regulatorio maduro.</div>
+  </div>
+</div>
+
+<!-- SEC 5: SECTOR EXTERNO -->
+<div class="sec-hdr"><div class="sec-num">5</div><div class="sec-title">Sector Externo: Real Resiliente, Déficit de Cuenta Corriente Persistente</div><div class="sec-line"></div></div>
+
+<div class="cgrid">
+  <div class="cw">
+    <div class="ct">Tipo de cambio BRL/USD</div>
+    <div class="cs">Promedio anual (2024–2030E) · EIU junio 2026</div>
+    <div class="leg"><span class="leg-i"><span class="dot" style="background:#216686"></span>BRL por US$1</span></div>
+    <div style="position:relative;height:200px"><canvas id="fxChart"></canvas></div>
+  </div>
+  <div class="cw">
+    <div class="ct">Salario real y consumo privado</div>
+    <div class="cs">Variación % (2023–2027E) · EIU junio 2026 / BCB / IBGE</div>
+    <div class="leg">
+      <span class="leg-i"><span class="dot" style="background:#216686"></span>Salario real</span>
+      <span class="leg-i"><span class="dot" style="background:#DC7528"></span>Consumo privado</span>
+    </div>
+    <div style="position:relative;height:200px"><canvas id="wagesChart"></canvas></div>
+  </div>
+</div>
+
+<div class="grid">
+  <div class="card warn">
+    <div class="tag o">Riesgo urgente — EE.UU.</div>
+    <h3>Aranceles Sección 301: 37.5% nominal, impacto contenido por exempciones amplias</h3>
+    <p>La administración Trump propuso dos investigaciones separadas bajo Sección 301 que resultarían en aranceles nominales del 37.5% sobre importaciones brasileñas. Sin embargo, una lista amplia de exempciones aplica — la mayoría de los bienes estaría exenta — y las exportaciones a EE.UU. representan menos del 2% del PIB de Brasil. El EIU (jun/2026) estima el impacto económico directo como negligible. El riesgo más relevante es la voluntad demostrada de Trump de usar aranceles como herramienta de coerción geopolítica, incluyendo la designación de PCC y CV como organizaciones terroristas (EIU), que afecta el entorno de cumplimiento y reputación para empresas en sectores donde estas operan.</p>
+    <div class="impl o">Brasil está menos expuesto al mercado estadounidense que sus pares de la región (EE.UU. es el 3er socio comercial, detrás de China y la UE). El impacto directo es menor que para México o Colombia.</div>
+  </div>
+  <div class="card gr">
+    <div class="tag g">Mercosur-UE</div>
+    <h3>Acuerdo Mercosur-UE en vigor desde mayo 2026: nuevas oportunidades exportadoras</h3>
+    <p>La aplicación provisional del capítulo comercial del acuerdo entre Mercosur y la UE entró en vigor en mayo de 2026, según el EIU (jun/2026). Los bienes agrícolas (47.8% de las exportaciones de Mercosur a la UE) y los minerales (31.1%) son los principales beneficiarios. Los productos industriales europeos, por su parte, ganarán mayor acceso al mercado brasileño, aumentando la competencia. China seguirá siendo el primer socio comercial de Brasil, importando la vasta mayoría de las exportaciones de soja y carne vacuna.</p>
+    <div class="impl g">El acuerdo abre nuevas oportunidades exportadoras para el sector agrícola y minero de Brasil hacia la UE, y mejora el acceso de bienes de capital europeos, reduciendo costos de inversión en sectores industriales.</div>
+  </div>
+  <div class="card bl">
+    <div class="tag b">Cuenta corriente</div>
+    <h3>Déficit de cuenta corriente: US$58–60bn en 2026E, financiado por IED</h3>
+    <p>El BCB proyecta el déficit en transacciones corrientes para 2026 en US$58bn (2.2% del PIB), mejorando respecto al año anterior por la mejora del saldo comercial (BCB RPM mar/2026). El EIU estima US$73bn (2.6% del PIB). La brecha es financiada por flujos de IED que superan ampliamente el déficit: el BCB proyecta US$70bn en IDP (2.7% del PIB), mientras el EIU estima US$92.7bn en flujos brutos inward. Los déficits de servicios y renta primaria han alcanzado niveles récord y son persistentes, impulsados por tecnología digital y remesas de utilidades (BCB boxe RPM).</p>
+    <div class="impl b">El financiamiento del déficit de cuenta corriente por IED es un factor positivo de estabilidad externa. El riesgo es la dependencia de flujos de capitales sensibles a la percepción de riesgo político y fiscal.</div>
+  </div>
+</div>
+
+<!-- SEC 6: SISTEMA FINANCIERO -->
+<div class="sec-hdr"><div class="sec-num">6</div><div class="sec-title">Sistema Financiero: Ciclo de Crédito Restrictivo y Mora al Alza</div><div class="sec-line"></div></div>
+
+<div class="cgrid">
+  <div class="cw">
+    <div class="ct">Tasas activa, pasiva y de referencia Selic</div>
+    <div class="cs">% a.a., promedios (2024–2030E) · EIU junio 2026</div>
+    <div class="leg">
+      <span class="leg-i"><span class="dot" style="background:#216686"></span>Tasa activa</span>
+      <span class="leg-i"><span class="dot" style="background:#1D7D54"></span>Tasa pasiva</span>
+      <span class="leg-i"><span class="dot" style="background:#CD4F4F"></span>Selic corto plazo</span>
+    </div>
+    <div style="position:relative;height:210px"><canvas id="ratesChart"></canvas></div>
+  </div>
+  <div class="cw">
+    <div class="ct">Gasto de los hogares por categoría</div>
+    <div class="cs">US$ miles de millones (2025–2027E) · EIU junio 2026</div>
+    <div class="leg">
+      <span class="leg-i"><span class="dot" style="background:#216686"></span>Alimentos/beb.</span>
+      <span class="leg-i"><span class="dot" style="background:#1D7D54"></span>Salud</span>
+      <span class="leg-i"><span class="dot" style="background:#CD4F4F"></span>Transporte/telecom</span>
+      <span class="leg-i"><span class="dot" style="background:#DC7528"></span>Ocio/educación</span>
+    </div>
+    <div style="position:relative;height:210px"><canvas id="houseChart"></canvas></div>
+  </div>
+</div>
+
+<div class="grid">
+  <div class="card risk">
+    <div class="tag r">Inadimplencia</div>
+    <h3>NPL del SFN en 4.3% en febrero 2026 — por encima del máximo anterior de 3.5%</h3>
+    <p>La tasa de inadimplencia del crédito del Sistema Financiero Nacional subió al 4.3% en febrero de 2026, superando el pico anterior de 3.5% de octubre de 2023, según el EIU (jun/2026, citando BCB). El aumento refleja tanto el incremento coyuntural de atrasos como los efectos de las nuevas reglas contables (Res. 4.966). Las personas físicas muestran la mayor presión (tasa ~5.2%). El programa de renegociación Desenrola resultó menos eficaz de lo esperado para reducir la morosidad entre los más pobres (EIU).</p>
+    <div class="impl r">El deterioro de la calidad de cartera es el riesgo más tangible para el sistema bancario en el corto plazo. Exposiciones al segmento PF y tarjeta rotativa deben monitorearse especialmente.</div>
+  </div>
+  <div class="card bl">
+    <div class="tag b">Banca · ROE</div>
+    <h3>ROE del sector bancario: 14.9% en dic-2025, por debajo del pico de 18.6%</h3>
+    <p>El sector financiero de Brasil se ha recuperado bien de los impactos pandémicos. El ROE promedió 14.9% a diciembre de 2025, 0.33 p.p. por debajo de un año antes y aún lejos del pico de 18.6% de marzo de 2019 (EIU jun/2026). Banco do Brasil —el mayor banco por activos, de control estatal— presentó el peor desempeño entre los cinco grandes, con ROE de 4.5% a diciembre de 2025. Los malos préstamos (NPL) subieron desde inicios de 2021, en línea con el alza de tasas.</p>
+    <div class="impl b">El sector financiero brasileño es el mayor de América Latina en términos nominales (préstamos totales: US$2.0trn en 2025E) y tiene profundidad institucional, aunque la rentabilidad está bajo presión.</div>
+  </div>
+  <div class="card gr">
+    <div class="tag g">Fintech · Pix</div>
+    <h3>Fintech: Brasil tiene el mayor mercado de servicios financieros de LatAm y un ecosistema Pix consolidado</h3>
+    <p>Con 213M de personas y PIB de US$2.28trn en 2025, Brasil es el mayor mercado de servicios financieros de América Latina (EIU). La tecnología financiera (fintech) ha ganado muchos clientes, especialmente en banca y pagos. Las iniciativas gubernamentales en transferencias instantáneas (Pix) y Open Finance están impulsando startups fintech. Las empresas bancarias tradicionales también han realizado grandes inversiones tecnológicas para migrar usuarios a canales digitales. La reforma tributaria 2023 (unificación en IVA dual) generará ganancias de productividad a partir de 2026–33 (EIU).</p>
+    <div class="impl g">El mercado de pagos digitales, crédito al consumidor y scoring mejorado por Open Finance representan el mayor espacio de oportunidades en el sector financiero brasileño para actores nuevos y tradicionales.</div>
+  </div>
+</div>
+
+<!-- SEC 7: ELECCIONES -->
+<div class="sec-hdr"><div class="sec-num">7</div><div class="sec-title">Elecciones Octubre 2026: El Riesgo Político Determinante</div><div class="sec-line"></div></div>
+
+<div class="grid">
+  <div class="card risk">
+    <div class="tag r">Elecciones</div>
+    <h3>Lula (45%) vs Flávio Bolsonaro (43%): carrera muy ajustada con resultado abierto</h3>
+    <p>La carrera presidencial está configurada como una contienda muy estrecha entre los dos principales candidatos. Flávio Bolsonaro, endorsado por su padre en 2025, emergió como principal rival y brevemente superó a Lula en las encuestas. Sin embargo, su campaña sufrió un revés en mayo cuando surgieron reportes que lo vinculan a Daniel Vorcaro, el desacreditado propietario del Banco Master. Lula recuperó una ventaja estrecha (EIU, jun/2026): Lula 45%, Flávio Bolsonaro 42.7% (mayo 2026). La tasa de aprobación neta de Lula se mantiene negativa (entre -5% y -10% en distintas encuestadoras) por la preocupación ciudadana con la seguridad pública y la corrupción.</p>
+    <div class="impl r">Alta incertidumbre electoral hasta octubre. El resultado tendrá implicancias directas sobre la política fiscal y el ritmo de recortes de Selic post-2026.</div>
+  </div>
+  <div class="card warn">
+    <div class="tag o">Gobernabilidad</div>
+    <h3>Congreso fragmentado con más de 20 partidos: los legisladores son el kingmaker fiscal</h3>
+    <p>La efectividad del sistema político de Brasil permanecerá débil durante el período previsto, limitada por una burocracia ineficiente, procesos legales lentos y un sistema partidario fragmentado con más de 20 partidos registrados (EIU). El Congreso, de orientación centro-derecha, ha entregado algunas victorias a la administración Lula pero también algunos reveses notables: por primera vez en 130 años los legisladores rechazaron el nominado presidencial al STF. Las "emendas parlamentares" (asignaciones presupuestarias dirigidas por legisladores) siguen siendo el pegamento político del sistema.</p>
+    <div class="impl o">El Congreso actúa como freno sobre excesos del ejecutivo, pero también dificulta la consolidación fiscal. La administración que asuma en enero 2027 tendrá la responsabilidad de implementar los ajustes estructurales pendientes.</div>
+  </div>
+</div>
+
+<!-- TABLA DE RIESGOS Y CATALIZADORES -->
+<div class="sec-hdr" style="margin-top:1.5rem"><div class="sec-title" style="font-size:1.1rem">Agenda de Riesgos y Catalizadores Clave 2026–2027 (EIU Operational Risk Q2 2026)</div></div>
+
+<div class="timeline">
+  <div class="tl-row hdr">
+    <div class="tl-cell">Escenario / Evento</div>
+    <div class="tl-cell">Probabilidad · Impacto</div>
+    <div class="tl-cell">Descripción y mecanismo de transmisión</div>
+    <div class="tl-cell">Lectura para actores financieros</div>
+  </div>
+  <div class="tl-row">
+    <div class="tl-cell"><strong>Disputas post-electorales desatan protestas</strong><span style="font-size:11px;color:#888">Octubre-diciembre 2026</span></div>
+    <div class="tl-cell"><span class="pill pvh">Alta · Alta</span><div style="font-size:11px;color:#888;margin-top:4px">Intensidad: 16/25 · EIU</div></div>
+    <div class="tl-cell" style="color:var(--text)">Brasil tiene precedentes recientes de disputas post-electorales (enero 2023). Un contexto de carrera ajustada aumenta el riesgo. Las manifestaciones son regulares en Brasil y generalmente pacíficas, pero pueden escalar ante un ambiente polarizado y frustración ciudadana persistente (EIU, jun/2026).</div>
+    <div class="tl-cell">Volatilidad cambiaria y en activos domésticos en el período oct–dic 2026. Monitorear spreads de CDS y flujos de portafolio.</div>
+  </div>
+  <div class="tl-row">
+    <div class="tl-cell"><strong>Lula relaja metas fiscales; mercados reaccionan</strong><span style="font-size:11px;color:#888">En curso · pre-electoral</span></div>
+    <div class="tl-cell"><span class="pill pvh">Alta · Alta</span><div style="font-size:11px;color:#888;margin-top:4px">Intensidad: 16/25 · EIU</div></div>
+    <div class="tl-cell" style="color:var(--text)">Lula puede elevar el gasto para mejorar su posición electoral. El estímulo fiscal acumulado ya alcanza ~R$227bn (1.7% del PIB) en 2026. La deuda pública bruta llega al 80.4% del PIB en abril según el BCB, activando preocupaciones de sostenibilidad (EIU, jun/2026).</div>
+    <div class="tl-cell">Presión alcista sobre las primas de riesgo soberano y limitación del margen del BCB para reducir la Selic.</div>
+  </div>
+  <div class="tl-row">
+    <div class="tl-cell"><strong>Errores de política elevan volatilidad financiera</strong><span style="font-size:11px;color:#888">Riesgo continuo</span></div>
+    <div class="tl-cell"><span class="pill pvh">Alta · Alta</span><div style="font-size:11px;color:#888;margin-top:4px">Intensidad: 16/25 · EIU</div></div>
+    <div class="tl-cell" style="color:var(--text)">Política de combustibles de Petrobras (precios por debajo de la paridad internacional para proteger consumidores), interferencia en SOEs y medidas de crédito dirigido por BNDES debilitan la transmisión de la política monetaria y la credibilidad fiscal (EIU).</div>
+    <div class="tl-cell">El diferencial entre la tasa de referencia y el costo efectivo del crédito bancario refleja distorsiones estructurales de política que persisten independientemente del ciclo.</div>
+  </div>
+  <div class="tl-row">
+    <div class="tl-cell"><strong>Aranceles EE.UU. Sección 301 — implementación julio 2026</strong><span style="font-size:11px;color:#888">Fecha límite: julio 2026</span></div>
+    <div class="tl-cell"><span class="pill pm">Moderada · Alta</span><div style="font-size:11px;color:#888;margin-top:4px">EIU — "what we're watching"</div></div>
+    <div class="tl-cell" style="color:var(--text)">Aranceles nominales de 37.5% con lista amplia de exempciones. Exportaciones a EE.UU. representan menos del 2% del PIB. Impacto directo negligible. Riesgo mayor: voluntad de Trump de usar medidas no arancelarias (designación terrorista de PCC/CV) para presionar a Brasil en agenda bilateral (EIU).</div>
+    <div class="tl-cell">Bajo impacto macroeconómico directo. Mayor riesgo para empresas exportadoras específicas y para flujos de IED desde EE.UU. post-designación terrorista.</div>
+  </div>
+  <div class="tl-row">
+    <div class="tl-cell"><strong>Fenómeno El Niño: impacto agro y energía</strong><span style="font-size:11px;color:#888">TBC: 2026–inicio 2027</span></div>
+    <div class="tl-cell"><span class="pill pm">Moderada · Alta</span><div style="font-size:11px;color:#888;margin-top:4px">Intensidad: 12/25 · EIU</div></div>
+    <div class="tl-cell" style="color:var(--text)">La NOAA espera condiciones de El Niño para pronto, con duración hasta inicios de 2027. Sequía en el norte y centro-oeste, inundaciones en el sur. Impacto en producción agrícola y en la generación hidroeléctrica (55% de la matriz eléctrica). EIU incorporó efectos iniciales en su revisión de IPCA 2026 (+0.4 p.p. a 5.5% EoY).</div>
+    <div class="tl-cell">Presión adicional sobre inflación de alimentos y tarifas eléctricas. Monitorear la evolución de la agropecuaria en 2027E.</div>
+  </div>
+</div>
+
+<!-- SEC 8: FISCAL -->
+<div class="sec-hdr"><div class="sec-num">8</div><div class="sec-title">El Principal Riesgo Estructural: Deuda Pública Rumbo al 89% del PIB</div><div class="sec-line"></div></div>
+
+<div class="cgrid">
+  <div class="cw">
+    <div class="ct">Balance fiscal y deuda pública bruta</div>
+    <div class="cs">% del PIB (2024–2030E) · EIU junio 2026</div>
+    <div class="leg">
+      <span class="leg-i"><span class="dot" style="background:#CD4F4F"></span>Balance total</span>
+      <span class="leg-i"><span class="dot" style="background:#216686"></span>Deuda pública (der.)</span>
+    </div>
+    <div style="position:relative;height:220px"><canvas id="fiscalChart"></canvas></div>
+  </div>
+  <div class="cw">
+    <div class="ct">Entorno de negocios: ranking global EIU 2026–2030</div>
+    <div class="cs">Rango global (de 82 países, 1=mejor) · EIU mar/2026</div>
+    <div style="position:relative;height:220px"><canvas id="bizChart"></canvas></div>
+  </div>
+</div>
+
+<div class="dark-box">
+  <p class="ey">Síntesis ejecutiva · Junio 2026 · Fuentes: EIU jun'26 · BCB RPM mar'26</p>
+  <p class="lead">Brasil crece de forma moderada (2.0% en 2026E), con un mercado laboral en mínimos históricos de desempleo y una posición exportadora favorecida por el conflicto en Oriente Medio. Sin embargo, la política monetaria más restrictiva de América Latina, la inflación persistente por encima de la meta y una deuda pública en trayectoria alcista hacia el 89% del PIB en 2030 configuran un escenario de crecimiento potencial limitado.</p>
+  <p class="body">El determinante de mayor peso en el corto plazo es la elección presidencial de octubre de 2026. El resultado condicionará el marco fiscal y el ritmo de normalización monetaria a partir de 2027. En el mediano plazo, el petróleo del pré-sal, los minerales críticos y la reforma tributaria en implementación son los catalizadores estructurales más relevantes.</p>
+</div>
+
+<div class="grid">
+  <div class="card risk"><div class="tag r">Fiscal · Riesgo</div><h3>Deuda pública: de 78.6% del PIB (2025) a 89.0% en 2030E</h3><p>La trayectoria de la deuda pública bruta es la principal fuente de riesgo sistémico para Brasil. EIU proyecta un aumento desde 78.6% del PIB en 2025 hasta 89.0% en 2030 — por encima del umbral prudencial. El marco fiscal existente (regla de gasto al 70% del crecimiento de ingresos) no es suficiente para estabilizar la relación deuda/PIB, dado el uso de loopholes como los "precatórios" y medidas de ingresos puntuales (EIU).</p><div class="impl r">La sostenibilidad fiscal es la principal fuente de incertidumbre sobre el perfil crediticio soberano de Brasil. El BCB (RPM) proyecta que la trayectoria de DBGG continúa en alza, confirmado por el Focus de marzo 2026.</div></div>
+  <div class="card risk"><div class="tag r">Macro · Restricción</div><h3>Selic más alta de LatAm: tasa real neutra ~5.0–5.5% dificulta la inversión privada</h3><p>El EIU estima la tasa de interés real neutral en 5.0%–5.5% para Brasil, reflejando la elevada carga de deuda pública. Con la Selic en 14.75%, la política monetaria opera con un diferencial real de ~7 p.p. por encima del neutral. Esto limita el crecimiento de la inversión fija (proyectada en sólo 2.2% para 2026E, EIU) y encarece el costo del crédito bancario —la tasa activa promedio supera el 46% a.a. en 2026E.</p><div class="impl r">El alto costo del capital es el principal limitante del crecimiento potencial de Brasil. La reforma tributaria (simplificación del IVA 2026–33) y la productividad agrícola son los contrapesos estructurales.</div></div>
+  <div class="card warn"><div class="tag o">Política · Escenario</div><h3>Un gobierno de derecha en 2027 reduciría el riesgo fiscal y ampliaría el espacio para la Selic</h3><p>El EIU señala que una victoria de Flávio Bolsonaro probablemente desplazaría la mezcla de política hacia mayor disciplina fiscal y renovado impulso a las privatizaciones. Esto mejoraría la confianza inversora y brindaría más espacio al BCB para reducir tasas. Sin embargo, los límites del apetito por recorte de gasto en un Congreso fragmentado moderarían este escenario. Una reelección de Lula mantendría la política expansiva y el dilema fiscal (EIU).</p><div class="impl o">Ambos escenarios electorales implican dificultades fiscales estructurales, pero la dirección y la velocidad del ajuste diferirán. El período de transición (oct-dic 2026) es el de mayor incertidumbre.</div></div>
+  <div class="card succ"><div class="tag g">Oportunidades · Mediano plazo</div><h3>Mercado de capitales doméstico profundo y mayor stock de IED inward de LatAm</h3><p>Brasil tiene los mercados de capitales más profundos de América Latina. El stock de IED inward alcanza US$1.447trn en 2026E (55.4% del PIB), y los flujos brutos se proyectan en US$92.7bn para 2026E (EIU), impulsados por el sector agrícola, el pré-sal y los minerales críticos. El entorno de negocios muestra fortalezas en oportunidades de mercado (rank 19/82) y financiamiento (rank 39/82), con debilidades en impuestos (78/82) e infraestructura (69/82) (EIU).</p><div class="impl g">El tamaño del mercado, la diversificación de la base exportadora y la posición en minerales críticos hacen de Brasil el destino de IED más grande de LatAm. Las ineficiencias estructurales son el descuento a este perfil.</div></div>
+  <div class="card warn"><div class="tag o">Demográfico · Largo plazo</div><h3>Dividendo demográfico ya terminó: población activa decrece desde 2017</h3><p>El bono demográfico de Brasil alcanzó su pico alrededor de 2020 y se desvanece rápidamente. La proporción de población en edad activa (15–64 años) llegó a su máximo de 69.7% en 2017 y sigue declinando. La tasa de dependencia de ancianos pasó de 13.8% (2020) a 16.6% (2025), con proyección de 20% en 2030E (EIU). Con menos jóvenes y más retirados, el peso fiscal del sistema previsional y de salud se tornará insostenible sin reformas estructurales difíciles políticamente.</p><div class="impl o">El envejecimiento poblacional impone una restricción de largo plazo al crecimiento potencial y a la sostenibilidad fiscal. La reforma de pensiones de 2019 prorrogó pero no eliminó esta presión.</div></div>
+  <div class="card succ"><div class="tag g">Reform. fiscal · Catalizador</div><h3>Reforma tributaria 2023 (IVA dual): en implementación 2026–2033</h3><p>El Congreso aprobó en diciembre de 2023 la unificación de cinco impuestos al consumo en un sistema de IVA dual (IBS + CBS), con transición gradual de 2026 a 2033 (EIU). En 2026 se está estableciendo la estructura administrativa y operacional. La alícuota combinada de IVA se estima en ~28%, la más alta del mundo. Si bien la transición genera incertidumbre, el sistema simplificado reducirá distorsiones y mejorará la productividad en el mediano plazo — el EIU ya incorpora ganancias de productividad de esta reforma en sus proyecciones de largo plazo.</p><div class="impl g">La simplificación fiscal reduce el costo del cumplimiento tributario (hoy uno de los más altos del mundo) y mejora el entorno para la inversión privada, especialmente para empresas de servicios y manufactura.</div></div>
+  <div class="card succ"><div class="tag g">Energía · Fortaleza</div><h3>Exportador neto y pré-sal: Brasil capta la renta del conflicto iraní como pocos emergentes</h3><p>A diferencia de la mayoría de los mercados emergentes, Brasil se beneficia del alza de precios de energía derivada del conflicto en Irán. El EIU (jun/2026) proyecta el precio del Brent en US$99 b para 2026 (desde US$69 en el escenario de diciembre). Las exportaciones de bienes saltan a US$400bn en 2026E (+14.1%) y el superávit comercial proyectado es de US$79bn. El BCB (RPM mar/2026) reconoció que el impacto del conflicto sobre la proyección de PIB debería ser consistente con +0.2 p.p. vía sector externo.</p><div class="impl g">La posición energética exportadora neta es un amortiguador macroeconómico relevante y reduce la vulnerabilidad externa en el escenario actual de geopolítica volátil.</div></div>
+  <div class="card risk"><div class="tag r">Crecimiento · Restricción</div><h3>Productividad laboral estancada ex-agro: 0.2% a.a. promedio 2019–2025</h3><p>El BCB (boxe RPM, mar/2026) señala que la productividad del trabajo creció apenas 0.6% a.a. promedio entre 2019 y 2025, y excluyendo la agropecuaria, baja a 0.2% a.a. — con el efecto directo acumulado tornándose negativo desde 2023. La productividad sin el sector agropecuario ha estado estancada desde 2023. Esto limita el PIB potencial y confirma que las ganancias de productividad estructurales solo llegarán con la implementación completa de la reforma tributaria y mejoras en educación, infraestructura y capital humano.</p><div class="impl r">El crecimiento de 2.0–2.3% de Brasil en el mediano plazo (EIU 2020-60: 2.1% a.a.) refleja este techo estructural. Brasil no puede acelerar sosteniblemente sin reformas del lado de la oferta.</div></div>
+</div>
+
+<!-- FUENTES -->
+<div class="src">
+  <h4>Fuentes consultadas</h4>
+  <ul>
+    <li>EIU One-click Report: Brazil (junio 2026 · múltiples secciones: Briefing, Political stability, Political effectiveness, Election watch, International relations, Policy trends, Monetary policy, Fiscal policy, Economic forecast summary, Economic growth, Financial services, Healthcare, Automotive, Business environment rankings)</li>
+    <li>BCB — Relatório de Política Monetária 1T2026 (26 de marzo de 2026 · Banco Central do Brasil)</li>
+    <li>IBGE — Crescimento anual do PIB (2014–2025 · Fuente: BCB RPM slide 11)</li>
+    <li>BCB / IBGE — VAB por sector: agropecuaria, industria, servicios (2023–2025)</li>
+    <li>BCB RPM — Mercado de trabalho: desocupação, emprego formal, rendimento (slides 20–21)</li>
+    <li>BCB RPM — Crédito: fluxo financeiro, inadimplência, projeções 2026 (slides 23–29)</li>
+    <li>BCB RPM — Fiscal: déficit primário, projeções de dívida Focus mar/2026 (slide 30)</li>
+    <li>BCB RPM — Contas externas: transações correntes, IDP 2026 (slides 31–33)</li>
+    <li>BCB RPM — IPCA e núcleos, expectativas Focus, projeções condicionais (slides 36–47)</li>
+    <li>EIU — Economic forecast summary: GDP, unemployment, inflation, exchange rate (jun/2026)</li>
+    <li>EIU — Foreign direct investment table (jun/2026)</li>
+    <li>EIU — GDP at current and constant prices, sector of origin (jun/2026)</li>
+    <li>EIU — Fiscal indicators, monetary indicators (jun/2026)</li>
+    <li>EIU — Consumer expenditure by category (jun/2026)</li>
+    <li>EIU — Financial services: exchange and interest rates, total financial sector (jun/2026)</li>
+    <li>EIU — Energy sector: oil production, renewable energy matrix (sep/2025 · dic/2025)</li>
+    <li>EIU — Business environment rankings: global and regional (mar/2026)</li>
+    <li>US Geological Survey / EIU — Critical mineral reserves: Brazil position (2024)</li>
+  </ul>
+</div>
+
+</div>
+
+<div class="footer">Análisis actualizado junio 2026 · Fuentes: EIU jun'26, BCB RPM 1T2026 (mar/2026), IBGE · <strong>Elecciones presidenciales Brasil: octubre 2026</strong></div>
+
+<script>
+const B='#216686',R='#CD4F4F',G='#A6A6A6',O='#DC7528',GR='#1D7D54';
+const L7=['2024','2025','2026E','2027E','2028E','2029E','2030E'];
+const L8=['2024','2025','2026E','2027E','2028E','2029E','2030E'];
+const L5=['2023','2024','2025','2026E','2027E'];
+const D={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false}},scales:{x:{grid:{display:false},ticks:{font:{size:11},color:'#888'}},y:{grid:{color:'#f0eeea'},ticks:{font:{size:11},color:'#888'}}}};
+function pct(v){return v+'%'} function usd(v){return '$'+v+'bn'} function kbd(v){return (v/1000).toFixed(1)+'M'}
+
+// 1. PIB real Brasil vs Mundo vs Emergentes
+// Fuente: EIU jun/2026 — Key Indicators + International Assumptions
+new Chart(document.getElementById('gdpChart'),{type:'line',data:{labels:L7,datasets:[
+  {label:'Brasil',data:[3.4,2.3,2.0,1.8,2.2,2.2,2.3],borderColor:GR,backgroundColor:'rgba(29,125,84,0.06)',fill:true,tension:.4,borderWidth:2,pointRadius:4,pointBackgroundColor:GR},
+  {label:'Mundo',data:[2.8,2.7,2.4,2.8,2.7,2.8,2.8],borderColor:G,borderDash:[5,3],backgroundColor:'transparent',tension:.4,borderWidth:1.5,pointRadius:3,pointBackgroundColor:G},
+  {label:'Emergentes',data:[4.2,4.1,3.3,4.2,4.0,3.9,3.9],borderColor:O,borderDash:[2,2],backgroundColor:'transparent',tension:.4,borderWidth:1.5,pointRadius:3,pointBackgroundColor:O}
+]},options:{...D,scales:{...D.scales,y:{...D.scales.y,min:-1,max:5,ticks:{...D.scales.y.ticks,callback:pct}}}}});
+
+// 2. Crédito total del SFN LP + CP
+// Fuente: EIU jun/2026 — Financial services · Total financial sector (US$bn)
+new Chart(document.getElementById('creditChart'),{type:'bar',data:{labels:L7,datasets:[
+  {label:'LP',data:[940,1156,1193,1235,1283,1340,1400],backgroundColor:'rgba(33,102,134,0.7)',borderRadius:3,stack:'a'},
+  {label:'CP',data:[662,814,840,869,903,943,985],backgroundColor:'rgba(220,117,40,0.65)',borderRadius:3,stack:'a'}
+]},options:{...D,scales:{...D.scales,x:{...D.scales.x,stacked:true},y:{...D.scales.y,stacked:true,ticks:{...D.scales.y.ticks,callback:usd}}}}});
+
+// 3. GDP composición — contribuciones pp
+// Fuente: EIU jun/2026 — GDP at constant prices, real contribution to GDP growth
+new Chart(document.getElementById('gdpCompChart'),{type:'bar',data:{labels:['2025','2026E','2027E'],datasets:[
+  {label:'Consumo privado',data:[0.9,1.5,1.5],backgroundColor:'rgba(33,102,134,0.75)',borderRadius:3,stack:'a'},
+  {label:'Inversión fija',data:[0.5,0.4,0.7],backgroundColor:'rgba(29,125,84,0.75)',borderRadius:3,stack:'a'},
+  {label:'Gob+exist.',data:[0.4,0.4,0.3],backgroundColor:'rgba(166,166,166,0.75)',borderRadius:3,stack:'a'},
+  {label:'Bal. externa',data:[0.2,-0.4,-0.1],backgroundColor:'rgba(220,117,40,0.6)',borderRadius:3,stack:'a'}
+]},options:{...D,scales:{...D.scales,x:{...D.scales.x,stacked:true},y:{...D.scales.y,stacked:true,min:-0.5,max:3.2,ticks:{...D.scales.y.ticks,callback:(v)=>v+'pp'}}}}});
+
+// 4. VAB por sector — agropecuaria, industria, servicios
+// Fuente: BCB RPM mar/2026 (slides 13, IBGE) + EIU jun/2026 (2026E)
+new Chart(document.getElementById('sectorVabChart'),{type:'bar',data:{
+  labels:['Agropecuaria','Industria','Servicios'],
+  datasets:[
+    {label:'2023',data:[16.3,1.7,2.8],backgroundColor:'rgba(220,117,40,0.75)',borderRadius:3},
+    {label:'2024',data:[-3.7,3.1,3.8],backgroundColor:'rgba(33,102,134,0.7)',borderRadius:3},
+    {label:'2025',data:[11.7,1.4,1.8],backgroundColor:'rgba(29,125,84,0.7)',borderRadius:3},
+    {label:'2026E',data:[1.2,1.7,1.2],backgroundColor:'rgba(166,166,166,0.7)',borderRadius:3}
+  ]
+},options:{...D,scales:{x:{...D.scales.x,grid:{display:false}},y:{...D.scales.y,min:-5,max:18,ticks:{...D.scales.y.ticks,callback:pct}}},plugins:{...D.plugins,legend:{display:true,labels:{font:{size:10},color:'#888',boxWidth:10}}}}});
+
+// 5. Fiscal: balance + deuda pública
+// Fuente: EIU jun/2026 — Fiscal indicators (% of GDP)
+new Chart(document.getElementById('fiscalChart'),{type:'bar',data:{labels:L7,datasets:[
+  {label:'Balance fiscal',data:[-6.3,-7.4,-7.3,-7.2,-7.2,-7.2,-7.4],backgroundColor:'rgba(205,79,79,0.65)',borderRadius:3,yAxisID:'y'},
+  {label:'Deuda pública',data:[76.3,78.6,80.1,82.5,85.0,87.3,89.0],type:'line',borderColor:B,backgroundColor:'transparent',tension:.4,borderWidth:2,pointRadius:3,pointBackgroundColor:B,yAxisID:'y2'}
+]},options:{...D,scales:{x:{...D.scales.x},y:{...D.scales.y,min:-9,max:0,ticks:{...D.scales.y.ticks,callback:pct},title:{display:true,text:'Balance (%)',font:{size:10},color:'#888'}},y2:{position:'right',grid:{display:false},min:65,max:100,ticks:{font:{size:10},color:'#888',callback:pct},title:{display:true,text:'Deuda (%)',font:{size:10},color:'#888'}}}}});
+
+// 6. IPCA + Selic (tasa corta)
+// Fuente: EIU jun/2026 — Key Indicators (IPCA avg) + Financial services (short-term rate avg)
+new Chart(document.getElementById('inflationChart'),{type:'bar',data:{labels:L7,datasets:[
+  {label:'IPCA',data:[4.4,5.0,4.7,4.5,3.8,3.6,3.5],backgroundColor:'rgba(205,79,79,0.7)',borderRadius:3},
+  {label:'Selic (tasa corta avg)',data:[9.4,12.4,12.0,10.7,9.8,9.6,9.6],type:'line',borderColor:B,backgroundColor:'transparent',tension:.4,borderWidth:2,pointRadius:4,pointBackgroundColor:B}
+]},options:{...D,scales:{...D.scales,y:{...D.scales.y,min:0,max:15,ticks:{...D.scales.y.ticks,callback:pct}}}}});
+
+// 7. Desempleo + salario real (dual axis)
+// Fuente: EIU jun/2026 — Key Indicators (desempleo) + Employment, wages and prices (salario real)
+new Chart(document.getElementById('employChart'),{type:'line',data:{
+  labels:['2022','2023','2024','2025','2026E','2027E','2028E','2029E','2030E'],
+  datasets:[
+    {label:'Desocupación',data:[9.3,8.0,6.9,6.0,5.9,6.3,6.6,6.5,6.6],borderColor:R,backgroundColor:'rgba(205,79,79,0.06)',fill:true,tension:.4,borderWidth:2,pointRadius:4,pointBackgroundColor:R,yAxisID:'y'},
+    {label:'Salario real',data:[-2.3,5.5,4.4,3.8,-0.6,0.7,0.9,0.9,0.9],borderColor:B,borderDash:[4,3],backgroundColor:'transparent',tension:.4,borderWidth:1.5,pointRadius:3,pointBackgroundColor:B,yAxisID:'y2'}
+  ]
+},options:{...D,scales:{x:{...D.scales.x},y:{...D.scales.y,min:4,max:11,ticks:{...D.scales.y.ticks,callback:pct},title:{display:true,text:'Desocupación',font:{size:10},color:'#888'}},y2:{position:'right',grid:{display:false},min:-5,max:8,ticks:{font:{size:10},color:'#888',callback:pct},title:{display:true,text:'Sal. real',font:{size:10},color:'#888'}}}}});
+
+// 8. Producción de petróleo ('000 b/d)
+// Fuente: EIU jun/2026 — GDP at current market prices (memorandum item: Oil production '000 b/d)
+new Chart(document.getElementById('oilChart'),{type:'bar',data:{
+  labels:['2021','2022','2023','2024','2025','2026E','2027E','2028E','2029E','2030E'],
+  datasets:[{
+    label:'Prod. b/d (miles)',
+    data:[2905,3021,3401,3358,3768,4380,4600,4600,4600,4600],
+    backgroundColor:(c)=>c.dataIndex<5?'rgba(29,125,84,0.75)':'rgba(29,125,84,0.35)',
+    borderRadius:4
+  }]
+},options:{...D,scales:{...D.scales,y:{...D.scales.y,min:2500,max:5000,ticks:{...D.scales.y.ticks,callback:(v)=>(v/1000).toFixed(1)+'M'}}}}});
+
+// 9. IED inflows (US$bn)
+// Fuente: EIU jun/2026 — Foreign direct investment
+new Chart(document.getElementById('fdiChart'),{type:'bar',data:{
+  labels:['2021','2022','2023','2024','2025','2026E','2027E','2028E','2029E','2030E'],
+  datasets:[{label:'IED inflows',data:[46.4,75.5,62.8,74.1,77.7,92.7,96.3,100.8,105.6,111.1],backgroundColor:(c)=>c.dataIndex<5?'rgba(33,102,134,0.65)':'rgba(33,102,134,0.35)',borderRadius:4}]
+},options:{...D,scales:{...D.scales,y:{...D.scales.y,min:0,max:130,ticks:{...D.scales.y.ticks,callback:usd}}}}});
+
+// 10. Tipo de cambio BRL/USD
+// Fuente: EIU jun/2026 — Monetary indicators + Financial services
+new Chart(document.getElementById('fxChart'),{type:'line',data:{labels:L7,datasets:[{label:'BRL/USD',data:[5.39,5.59,5.10,5.25,5.32,5.36,5.39],borderColor:B,backgroundColor:'rgba(33,102,134,0.07)',fill:true,tension:.4,borderWidth:2,pointRadius:4,pointBackgroundColor:B}]},options:{...D,scales:{...D.scales,y:{...D.scales.y,min:4.7,max:6.1}}}});
+
+// 11. Salario real y consumo privado
+// Fuente: EIU jun/2026 — Employment wages and prices (real wages) + GDP constant prices (private consumption)
+new Chart(document.getElementById('wagesChart'),{type:'line',data:{labels:L5,datasets:[
+  {label:'Salario real',data:[5.5,4.4,3.8,-0.6,0.7],borderColor:B,backgroundColor:'rgba(33,102,134,0.06)',fill:true,tension:.4,borderWidth:2,pointRadius:4,pointBackgroundColor:B},
+  {label:'Consumo privado',data:[3.2,5.1,1.3,2.2,2.1],borderColor:O,borderDash:[4,3],backgroundColor:'transparent',tension:.4,borderWidth:1.5,pointRadius:3,pointBackgroundColor:O}
+]},options:{...D,scales:{...D.scales,y:{...D.scales.y,min:-2,max:7,ticks:{...D.scales.y.ticks,callback:pct}}}}});
+
+// 12. Gasto hogares por categoría (stacked bar)
+// Fuente: EIU jun/2026 — Consumer expenditure (US$bn)
+new Chart(document.getElementById('houseChart'),{type:'bar',data:{labels:['2025','2026E','2027E'],datasets:[
+  {label:'Alimentos/beb.',data:[315.0,345.3,359.9],backgroundColor:'rgba(33,102,134,0.75)',borderRadius:3,stack:'a'},
+  {label:'Salud',data:[187.6,199.8,206.5],backgroundColor:'rgba(29,125,84,0.7)',borderRadius:3,stack:'a'},
+  {label:'Transporte/telecom',data:[389.3,430.8,457.2],backgroundColor:'rgba(205,79,79,0.65)',borderRadius:3,stack:'a'},
+  {label:'Ocio/educación',data:[81.6,87.6,90.6],backgroundColor:'rgba(220,117,40,0.7)',borderRadius:3,stack:'a'}
+]},options:{...D,scales:{...D.scales,x:{...D.scales.x,stacked:true},y:{...D.scales.y,stacked:true,ticks:{...D.scales.y.ticks,callback:usd}}}}});
+
+// 13. Tasas activa, pasiva y política (Selic)
+// Fuente: EIU jun/2026 — Financial services · Exchange and interest rates
+new Chart(document.getElementById('ratesChart'),{type:'line',data:{labels:L7,datasets:[
+  {label:'Tasa activa',data:[40.2,45.3,46.3,43.7,42.0,41.5,41.5],borderColor:B,backgroundColor:'transparent',tension:.4,borderWidth:2,pointRadius:4,pointBackgroundColor:B},
+  {label:'Tasa pasiva',data:[10.2,12.7,12.3,10.0,8.3,7.9,7.9],borderColor:GR,borderDash:[5,3],backgroundColor:'transparent',tension:.4,borderWidth:1.5,pointRadius:3,pointBackgroundColor:GR},
+  {label:'Selic (corta)',data:[9.4,12.4,12.0,10.7,9.8,9.6,9.6],borderColor:R,borderDash:[2,2],backgroundColor:'transparent',tension:.4,borderWidth:1.5,pointRadius:3,pointBackgroundColor:R}
+]},options:{...D,scales:{...D.scales,y:{...D.scales.y,min:0,max:55,ticks:{...D.scales.y.ticks,callback:pct}}}}});
+
+// 14. Ranking entorno de negocios (horizontal bar)
+// Fuente: EIU Business environment rankings Brazil (mar/2026) — global rank out of 82
+new Chart(document.getElementById('bizChart'),{type:'bar',data:{
+  labels:['Oport. mercado','Financiamiento','Tecnología','Pol. inv. ext.','Pol. empresa priv.','Comercio externo','Entorno global','Infraestructura','Mercado laboral','Impuestos'],
+  datasets:[{
+    label:'Ranking global (de 82)',
+    data:[19,39,41,39,39,52,53,69,70,78],
+    backgroundColor:(c)=>{
+      const v=c.parsed.x;
+      if(v<=25)return'rgba(29,125,84,0.7)';
+      if(v<=50)return'rgba(220,117,40,0.65)';
+      return'rgba(205,79,79,0.65)';
+    },
+    borderRadius:4
+  }]
+},options:{...D,indexAxis:'y',scales:{
+  x:{...D.scales.x,min:0,max:85,ticks:{...D.scales.x.ticks,callback:(v)=>v+'/82'}},
+  y:{...D.scales.y,grid:{display:false},ticks:{font:{size:10},color:'#888'}}
+},plugins:{...D.plugins,tooltip:{callbacks:{label:(c)=>'Rank '+c.parsed.x+' de 82'}}}}});
+
+</script>
+</body>
+</html>
